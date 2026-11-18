@@ -163,102 +163,6 @@ Job-Optimizer/
 
 *Note: This is a simplified view of the important project files and directories.*
 
-## Installation and Setup
-
-### Prerequisites
-
-Install the following tools before running the project:
-
-- Python 3.12 or a compatible Python version.
-- Node.js and npm.
-- Git.
-- Docker Desktop.
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/rockykundu/Job-Optimizer.git
-```
-
-```bash
-cd Job-Optimizer
-```
-
-### 2. Backend Setup Using Docker
-
-Build the backend Docker image:
-
-```bash
-docker build -t job-optimizer-api:local .
-```
-
-Run the backend container:
-
-```bash
-docker run -d --name job-optimizer-api-test -p 8081:8080 job-optimizer-api:local
-```
-
-The backend will be available at:
-
-```text
-http://localhost:8081
-```
-
-### 3. Frontend Setup
-
-Open another terminal:
-
-```bash
-cd frontend
-```
-
-Install the frontend dependencies:
-
-```bash
-npm install
-```
-
-Create a `.env` file inside the frontend directory:
-
-```env
-VITE_API_BASE_URL=http://localhost:8081/api/v1
-```
-
-Start the frontend:
-
-```bash
-npm run dev
-```
-
-Open the local frontend URL displayed in the terminal, usually:
-
-```text
-http://localhost:5173
-```
-
-**Important:** The frontend must be configured with the correct backend URL. For a hosted frontend, use the corresponding publicly accessible HTTPS backend URL instead.
-
-## API Documentation
-
-The backend provides REST API endpoints through FastAPI.
-
-### Important Endpoints
-
-| Endpoint | Method | Purpose |
-|---|---|---|
-| `/api/v1/health/live` | GET | Check whether the API is running |
-| `/api/v1/health/ready` | GET | Check backend and model readiness |
-| `/api/v1/model` | GET | Retrieve model information |
-| `/api/v1/analyze-resume?top_k=5` | POST | Analyze a PDF resume and return job recommendations |
-
-### API Documentation Interface
-
-When the backend is running, access the interactive API documentation at:
-
-```text
-http://localhost:8081/docs
-```
-
 The resume analysis endpoint accepts a PDF file through a multipart form upload.
 
 ## Example Workflow
@@ -291,20 +195,6 @@ The following checks have been performed:
 The current backend reports 2,468 rankable job records.
 
 ## Screenshots
-
-Add screenshots of your actual application here.
-
-| Application Section | Screenshot |
-|---|---|
-| Home Page | Add home page screenshot |
-| Resume Upload | Add resume upload screenshot |
-| Resume Analysis | Add analysis screenshot |
-| Job Recommendations | Add recommendation results screenshot |
-
-You can create a `screenshots` folder and store your images there.
-
-For example:
-
 ```markdown
 ![Home Page](screenshots/home.png)
 
@@ -343,10 +233,6 @@ This project demonstrates the practical application of NLP, deep learning, graph
 ## Author
 
 **Rocky Kundu**
-
-B.Tech – Computer Science and Engineering
-
-**Areas of Interest:** Artificial Intelligence, Machine Learning, Data Science, and Software Development.
 
 ### Connect With Me
 
