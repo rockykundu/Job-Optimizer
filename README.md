@@ -25,7 +25,7 @@ The main objective is to make job recommendations more meaningful than simple ke
 
 The project follows a separate frontend and backend architecture.
 
-
+<p align="center">   <img src="screenshots/Untitled Diagram.drawio (1).png" width="400" alt="Home Page"> </p>
 
 ### Architecture Explanation
 
@@ -195,13 +195,20 @@ The following checks have been performed:
 The current backend reports 2,468 rankable job records.
 
 ## Screenshots
-```markdown
-![Home Page](screenshots/home.png)
+## Application Screenshots
 
-![Resume Analysis](screenshots/resume-analysis.png)
+### Home Page
 
-![Job Recommendations](screenshots/job-recommendations.png)
-```
+<p align="center">   <img src="screenshots/3.png" width="700" alt="Home Page"> </p>
+
+### Resume Analysis
+
+<p align="center">   <img src="screenshots/1.png" width="700" alt="Resume Analysis"> </p>
+
+### Job Recommendations
+
+<p align="center">   <img src="screenshots/2.png" width="700" alt="Job Recommendations"> </p>
+
 
 ## Project Limitations
 
