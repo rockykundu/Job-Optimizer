@@ -1,0 +1,1034 @@
+{
+  "stage": "Final model selection and baseline comparison",
+  "decision": {
+    "skills": {
+      "selected_model": "gnn",
+      "candidate_blend_weights": {
+        "gnn": 0.92,
+        "sbert": 0.05,
+        "keyword": 0.03
+      },
+      "gnn_validation_mae": 5.954827,
+      "candidate_blend_validation_mae": 5.921769,
+      "relative_validation_improvement": 0.005551,
+      "minimum_required_improvement": 0.01,
+      "candidate_blend_accepted": false
+    },
+    "composite": {
+      "selected_model": "gnn",
+      "candidate_blend_weights": {
+        "gnn": 0.9,
+        "sbert": 0.1,
+        "keyword": 0.0
+      },
+      "gnn_validation_mae": 4.255726,
+      "candidate_blend_validation_mae": 4.234238,
+      "relative_validation_improvement": 0.005049,
+      "minimum_required_improvement": 0.01,
+      "candidate_blend_accepted": false
+    }
+  },
+  "final_architecture": {
+    "numeric_scoring": "SBERT-powered weighted heterogeneous GNN",
+    "numeric_checkpoint": "models/gnn/heterogeneous_gnn.pt",
+    "explanations": "Deterministic keyword matched and missing skill evidence",
+    "keyword_score_used_in_final_numeric_score": false,
+    "forced_ensemble": false
+  },
+  "selection_protocol": {
+    "weight_search": "Convex weights on a 0.01 grid",
+    "objective": "Validation MAE, independently for each target",
+    "complexity_guardrail": "Accept a blend only with at least 1% relative validation-MAE improvement over GNN",
+    "missing_keyword_handling": "Renormalise available component weights; GNN fallback if none remain"
+  },
+  "training_mean_dummy_values": {
+    "skills": 63.089592,
+    "composite": 69.458498
+  },
+  "splits": {
+    "train": {
+      "pair_count": 10626,
+      "unique_candidate_count": 378,
+      "keyword_unavailable_pairs": 99,
+      "targets": {
+        "skills": {
+          "training_mean_dummy": {
+            "evaluated_pairs": 10626,
+            "mae": 10.9245,
+            "rmse": 13.001,
+            "pearson": -0.0,
+            "spearman": null,
+            "mean_error": 0.0,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 352,
+              "mean": 0.541,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 352,
+              "pair_comparisons": 236980,
+              "accuracy": 0.5,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "keyword": {
+            "evaluated_pairs": 10527,
+            "mae": 8.1825,
+            "rmse": 10.5293,
+            "pearson": 0.5852,
+            "spearman": 0.5743,
+            "mean_error": -0.0264,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 349,
+              "mean": 0.7157,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 349,
+              "pair_comparisons": 233268,
+              "accuracy": 0.6791,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "sbert": {
+            "evaluated_pairs": 10626,
+            "mae": 8.3496,
+            "rmse": 10.5386,
+            "pearson": 0.5856,
+            "spearman": 0.5805,
+            "mean_error": -0.0,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 352,
+              "mean": 0.7701,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 352,
+              "pair_comparisons": 236980,
+              "accuracy": 0.723,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "gnn": {
+            "evaluated_pairs": 10626,
+            "mae": 5.164,
+            "rmse": 7.501,
+            "pearson": 0.8193,
+            "spearman": 0.7588,
+            "mean_error": 0.103,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 352,
+              "mean": 0.8462,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 352,
+              "pair_comparisons": 236980,
+              "accuracy": 0.8112,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "candidate_blend": {
+            "evaluated_pairs": 10626,
+            "mae": 5.1766,
+            "rmse": 7.4371,
+            "pearson": 0.8206,
+            "spearman": 0.7604,
+            "mean_error": 0.0939,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 352,
+              "mean": 0.8494,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 352,
+              "pair_comparisons": 236980,
+              "accuracy": 0.8119,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_final": {
+            "evaluated_pairs": 10626,
+            "mae": 5.164,
+            "rmse": 7.501,
+            "pearson": 0.8193,
+            "spearman": 0.7588,
+            "mean_error": 0.103,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 352,
+              "mean": 0.8462,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 352,
+              "pair_comparisons": 236980,
+              "accuracy": 0.8112,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_model": "gnn"
+        },
+        "composite": {
+          "training_mean_dummy": {
+            "evaluated_pairs": 10626,
+            "mae": 6.4355,
+            "rmse": 7.7637,
+            "pearson": null,
+            "spearman": null,
+            "mean_error": 0.0,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 360,
+              "mean": 0.6019,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 360,
+              "pair_comparisons": 276900,
+              "accuracy": 0.5,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "keyword": {
+            "evaluated_pairs": 10527,
+            "mae": 5.321,
+            "rmse": 6.6793,
+            "pearson": 0.5088,
+            "spearman": 0.4962,
+            "mean_error": -0.0026,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 357,
+              "mean": 0.7302,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 357,
+              "pair_comparisons": 272631,
+              "accuracy": 0.6357,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "sbert": {
+            "evaluated_pairs": 10626,
+            "mae": 5.1832,
+            "rmse": 6.502,
+            "pearson": 0.5465,
+            "spearman": 0.5327,
+            "mean_error": 0.0,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 360,
+              "mean": 0.7793,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 360,
+              "pair_comparisons": 276900,
+              "accuracy": 0.6747,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "gnn": {
+            "evaluated_pairs": 10626,
+            "mae": 3.6783,
+            "rmse": 4.8866,
+            "pearson": 0.7774,
+            "spearman": 0.7316,
+            "mean_error": -0.0795,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 360,
+              "mean": 0.8459,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 360,
+              "pair_comparisons": 276900,
+              "accuracy": 0.757,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "candidate_blend": {
+            "evaluated_pairs": 10626,
+            "mae": 3.6995,
+            "rmse": 4.8716,
+            "pearson": 0.779,
+            "spearman": 0.7336,
+            "mean_error": -0.0715,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 360,
+              "mean": 0.8487,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 360,
+              "pair_comparisons": 276900,
+              "accuracy": 0.7579,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_final": {
+            "evaluated_pairs": 10626,
+            "mae": 3.6783,
+            "rmse": 4.8866,
+            "pearson": 0.7774,
+            "spearman": 0.7316,
+            "mean_error": -0.0795,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 360,
+              "mean": 0.8459,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 360,
+              "pair_comparisons": 276900,
+              "accuracy": 0.757,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_model": "gnn"
+        }
+      }
+    },
+    "validation": {
+      "pair_count": 1808,
+      "unique_candidate_count": 82,
+      "keyword_unavailable_pairs": 18,
+      "targets": {
+        "skills": {
+          "training_mean_dummy": {
+            "evaluated_pairs": 1808,
+            "mae": 10.6955,
+            "rmse": 12.6984,
+            "pearson": -0.0,
+            "spearman": null,
+            "mean_error": 0.2611,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 74,
+              "mean": 0.5544,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 74,
+              "pair_comparisons": 27561,
+              "accuracy": 0.5,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "keyword": {
+            "evaluated_pairs": 1790,
+            "mae": 8.2314,
+            "rmse": 10.6219,
+            "pearson": 0.5452,
+            "spearman": 0.5372,
+            "mean_error": 0.2238,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 74,
+              "mean": 0.7516,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 74,
+              "pair_comparisons": 26951,
+              "accuracy": 0.664,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "sbert": {
+            "evaluated_pairs": 1808,
+            "mae": 8.3117,
+            "rmse": 10.4951,
+            "pearson": 0.5639,
+            "spearman": 0.5491,
+            "mean_error": -0.4665,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 74,
+              "mean": 0.7895,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 74,
+              "pair_comparisons": 27561,
+              "accuracy": 0.7035,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "gnn": {
+            "evaluated_pairs": 1808,
+            "mae": 5.9548,
+            "rmse": 8.5674,
+            "pearson": 0.7485,
+            "spearman": 0.6948,
+            "mean_error": 0.1617,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 74,
+              "mean": 0.8395,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 74,
+              "pair_comparisons": 27561,
+              "accuracy": 0.765,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "candidate_blend": {
+            "evaluated_pairs": 1808,
+            "mae": 5.9218,
+            "rmse": 8.4461,
+            "pearson": 0.7513,
+            "spearman": 0.6985,
+            "mean_error": 0.1319,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 74,
+              "mean": 0.8449,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 74,
+              "pair_comparisons": 27561,
+              "accuracy": 0.7664,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_final": {
+            "evaluated_pairs": 1808,
+            "mae": 5.9548,
+            "rmse": 8.5674,
+            "pearson": 0.7485,
+            "spearman": 0.6948,
+            "mean_error": 0.1617,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 74,
+              "mean": 0.8395,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 74,
+              "pair_comparisons": 27561,
+              "accuracy": 0.765,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_model": "gnn"
+        },
+        "composite": {
+          "training_mean_dummy": {
+            "evaluated_pairs": 1808,
+            "mae": 6.2654,
+            "rmse": 7.5964,
+            "pearson": 0.0,
+            "spearman": null,
+            "mean_error": -0.0161,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 75,
+              "mean": 0.6187,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 75,
+              "pair_comparisons": 31463,
+              "accuracy": 0.5,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "keyword": {
+            "evaluated_pairs": 1790,
+            "mae": 5.3197,
+            "rmse": 6.7359,
+            "pearson": 0.465,
+            "spearman": 0.468,
+            "mean_error": -0.0221,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 75,
+              "mean": 0.7724,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 75,
+              "pair_comparisons": 30813,
+              "accuracy": 0.6361,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "sbert": {
+            "evaluated_pairs": 1808,
+            "mae": 5.2264,
+            "rmse": 6.583,
+            "pearson": 0.5029,
+            "spearman": 0.4945,
+            "mean_error": -0.4215,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 75,
+              "mean": 0.7863,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 75,
+              "pair_comparisons": 31463,
+              "accuracy": 0.6692,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "gnn": {
+            "evaluated_pairs": 1808,
+            "mae": 4.2557,
+            "rmse": 5.6208,
+            "pearson": 0.6799,
+            "spearman": 0.6403,
+            "mean_error": -0.065,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 75,
+              "mean": 0.8294,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 75,
+              "pair_comparisons": 31463,
+              "accuracy": 0.7272,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "candidate_blend": {
+            "evaluated_pairs": 1808,
+            "mae": 4.2342,
+            "rmse": 5.5602,
+            "pearson": 0.6835,
+            "spearman": 0.6442,
+            "mean_error": -0.1006,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 75,
+              "mean": 0.8251,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 75,
+              "pair_comparisons": 31463,
+              "accuracy": 0.7294,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_final": {
+            "evaluated_pairs": 1808,
+            "mae": 4.2557,
+            "rmse": 5.6208,
+            "pearson": 0.6799,
+            "spearman": 0.6403,
+            "mean_error": -0.065,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 75,
+              "mean": 0.8294,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 75,
+              "pair_comparisons": 31463,
+              "accuracy": 0.7272,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_model": "gnn"
+        }
+      }
+    },
+    "test": {
+      "pair_count": 1996,
+      "unique_candidate_count": 82,
+      "keyword_unavailable_pairs": 15,
+      "targets": {
+        "skills": {
+          "training_mean_dummy": {
+            "evaluated_pairs": 1996,
+            "mae": 10.855,
+            "rmse": 12.7938,
+            "pearson": -0.0,
+            "spearman": null,
+            "mean_error": 0.8656,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 79,
+              "mean": 0.5522,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 79,
+              "pair_comparisons": 35285,
+              "accuracy": 0.5,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "keyword": {
+            "evaluated_pairs": 1981,
+            "mae": 8.2651,
+            "rmse": 10.884,
+            "pearson": 0.5214,
+            "spearman": 0.499,
+            "mean_error": -0.1504,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 78,
+              "mean": 0.7088,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 78,
+              "pair_comparisons": 34905,
+              "accuracy": 0.6527,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "sbert": {
+            "evaluated_pairs": 1996,
+            "mae": 8.301,
+            "rmse": 10.509,
+            "pearson": 0.5683,
+            "spearman": 0.5501,
+            "mean_error": 0.0584,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 79,
+              "mean": 0.7767,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 79,
+              "pair_comparisons": 35285,
+              "accuracy": 0.7119,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "gnn": {
+            "evaluated_pairs": 1996,
+            "mae": 6.1326,
+            "rmse": 9.078,
+            "pearson": 0.7141,
+            "spearman": 0.6551,
+            "mean_error": -0.1447,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 79,
+              "mean": 0.8043,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 79,
+              "pair_comparisons": 35285,
+              "accuracy": 0.7565,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "candidate_blend": {
+            "evaluated_pairs": 1996,
+            "mae": 6.0792,
+            "rmse": 8.925,
+            "pearson": 0.7196,
+            "spearman": 0.6619,
+            "mean_error": -0.1341,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 79,
+              "mean": 0.8216,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 79,
+              "pair_comparisons": 35285,
+              "accuracy": 0.7596,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_final": {
+            "evaluated_pairs": 1996,
+            "mae": 6.1326,
+            "rmse": 9.078,
+            "pearson": 0.7141,
+            "spearman": 0.6551,
+            "mean_error": -0.1447,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 79,
+              "mean": 0.8043,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 79,
+              "pair_comparisons": 35285,
+              "accuracy": 0.7565,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_model": "gnn"
+        },
+        "composite": {
+          "training_mean_dummy": {
+            "evaluated_pairs": 1996,
+            "mae": 6.3642,
+            "rmse": 7.6146,
+            "pearson": -0.0,
+            "spearman": null,
+            "mean_error": 0.1945,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 78,
+              "mean": 0.6294,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 78,
+              "pair_comparisons": 42020,
+              "accuracy": 0.5,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "keyword": {
+            "evaluated_pairs": 1981,
+            "mae": 5.4025,
+            "rmse": 6.8824,
+            "pearson": 0.4317,
+            "spearman": 0.4292,
+            "mean_error": -0.3323,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 77,
+              "mean": 0.7482,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 77,
+              "pair_comparisons": 41524,
+              "accuracy": 0.6163,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "sbert": {
+            "evaluated_pairs": 1996,
+            "mae": 5.1281,
+            "rmse": 6.4154,
+            "pearson": 0.5396,
+            "spearman": 0.531,
+            "mean_error": -0.2554,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 78,
+              "mean": 0.7751,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 78,
+              "pair_comparisons": 42020,
+              "accuracy": 0.6725,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "gnn": {
+            "evaluated_pairs": 1996,
+            "mae": 4.4477,
+            "rmse": 5.9513,
+            "pearson": 0.635,
+            "spearman": 0.6001,
+            "mean_error": -0.203,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 78,
+              "mean": 0.7933,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 78,
+              "pair_comparisons": 42020,
+              "accuracy": 0.7069,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "candidate_blend": {
+            "evaluated_pairs": 1996,
+            "mae": 4.3808,
+            "rmse": 5.8325,
+            "pearson": 0.6465,
+            "spearman": 0.6178,
+            "mean_error": -0.2082,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 78,
+              "mean": 0.7974,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 78,
+              "pair_comparisons": 42020,
+              "accuracy": 0.712,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_final": {
+            "evaluated_pairs": 1996,
+            "mae": 4.4477,
+            "rmse": 5.9513,
+            "pearson": 0.635,
+            "spearman": 0.6001,
+            "mean_error": -0.203,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 78,
+              "mean": 0.7933,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 78,
+              "pair_comparisons": 42020,
+              "accuracy": 0.7069,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_model": "gnn"
+        }
+      }
+    },
+    "gold": {
+      "pair_count": 108,
+      "unique_candidate_count": 79,
+      "keyword_unavailable_pairs": 3,
+      "targets": {
+        "skills": {
+          "training_mean_dummy": {
+            "evaluated_pairs": 108,
+            "mae": 17.1107,
+            "rmse": 20.4374,
+            "pearson": -0.0,
+            "spearman": null,
+            "mean_error": -11.5678,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 20,
+              "mean": 0.8639,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 20,
+              "pair_comparisons": 34,
+              "accuracy": 0.5,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "keyword": {
+            "evaluated_pairs": 105,
+            "mae": 11.302,
+            "rmse": 14.0569,
+            "pearson": 0.6789,
+            "spearman": 0.689,
+            "mean_error": -6.8472,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 19,
+              "mean": 0.9325,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 19,
+              "pair_comparisons": 31,
+              "accuracy": 0.7419,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "sbert": {
+            "evaluated_pairs": 108,
+            "mae": 12.1774,
+            "rmse": 14.9721,
+            "pearson": 0.7234,
+            "spearman": 0.7354,
+            "mean_error": -8.1559,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 20,
+              "mean": 0.8916,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 20,
+              "pair_comparisons": 34,
+              "accuracy": 0.7353,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "gnn": {
+            "evaluated_pairs": 108,
+            "mae": 8.0989,
+            "rmse": 10.572,
+            "pearson": 0.7975,
+            "spearman": 0.7897,
+            "mean_error": -2.768,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 20,
+              "mean": 0.9513,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 20,
+              "pair_comparisons": 34,
+              "accuracy": 0.7941,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "candidate_blend": {
+            "evaluated_pairs": 108,
+            "mae": 8.1592,
+            "rmse": 10.5199,
+            "pearson": 0.809,
+            "spearman": 0.8056,
+            "mean_error": -3.1531,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 20,
+              "mean": 0.9473,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 20,
+              "pair_comparisons": 34,
+              "accuracy": 0.7647,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_final": {
+            "evaluated_pairs": 108,
+            "mae": 8.0989,
+            "rmse": 10.572,
+            "pearson": 0.7975,
+            "spearman": 0.7897,
+            "mean_error": -2.768,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 20,
+              "mean": 0.9513,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 20,
+              "pair_comparisons": 34,
+              "accuracy": 0.7941,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_model": "gnn"
+        },
+        "composite": {
+          "training_mean_dummy": {
+            "evaluated_pairs": 108,
+            "mae": 9.7283,
+            "rmse": 12.2006,
+            "pearson": 0.0,
+            "spearman": null,
+            "mean_error": -6.6248,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 19,
+              "mean": 0.8246,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 19,
+              "pair_comparisons": 36,
+              "accuracy": 0.5,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "keyword": {
+            "evaluated_pairs": 105,
+            "mae": 6.7871,
+            "rmse": 8.3216,
+            "pearson": 0.7118,
+            "spearman": 0.6751,
+            "mean_error": -4.1513,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 19,
+              "mean": 0.8803,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 19,
+              "pair_comparisons": 32,
+              "accuracy": 0.6562,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "sbert": {
+            "evaluated_pairs": 108,
+            "mae": 7.4394,
+            "rmse": 9.3475,
+            "pearson": 0.6712,
+            "spearman": 0.6797,
+            "mean_error": -4.7235,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 19,
+              "mean": 0.8476,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 19,
+              "pair_comparisons": 36,
+              "accuracy": 0.6667,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "gnn": {
+            "evaluated_pairs": 108,
+            "mae": 5.4485,
+            "rmse": 7.1296,
+            "pearson": 0.7479,
+            "spearman": 0.7657,
+            "mean_error": -1.9871,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 19,
+              "mean": 0.9039,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 19,
+              "pair_comparisons": 36,
+              "accuracy": 0.7222,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "candidate_blend": {
+            "evaluated_pairs": 108,
+            "mae": 5.4714,
+            "rmse": 7.1757,
+            "pearson": 0.7577,
+            "spearman": 0.7708,
+            "mean_error": -2.2607,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 19,
+              "mean": 0.9039,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 19,
+              "pair_comparisons": 36,
+              "accuracy": 0.7222,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_final": {
+            "evaluated_pairs": 108,
+            "mae": 5.4485,
+            "rmse": 7.1296,
+            "pearson": 0.7479,
+            "spearman": 0.7657,
+            "mean_error": -1.9871,
+            "candidate_centred_ndcg_at_10": {
+              "candidate_count": 19,
+              "mean": 0.9039,
+              "relevance": "candidate-centred linear gain"
+            },
+            "pairwise_ranking_accuracy": {
+              "candidate_count": 19,
+              "pair_comparisons": 36,
+              "accuracy": 0.7222,
+              "tie_handling": "Prediction ties receive 0.5 credit; target ties are excluded"
+            }
+          },
+          "selected_model": "gnn"
+        }
+      }
+    }
+  },
+  "integrity_checks": {
+    "pair_sets_identical_across_models": true,
+    "duplicate_pairs": 0,
+    "target_mismatches": 0,
+    "sbert_missing_predictions": 0,
+    "gnn_missing_predictions": 0,
+    "keyword_missing_predictions_expected_from_unavailable_jobs": true
+  },
+  "leakage_controls": {
+    "blend_weights_selected_from_validation_only": true,
+    "test_used_for_selection": false,
+    "gold_used_for_selection": false,
+    "gold_used_for_weight_tuning": false,
+    "test_and_gold_loaded_after_selection_was_frozen": true
+  },
+  "limitations": [
+    "Role Radar training labels are generated compatibility labels, not observed hiring outcomes.",
+    "The human-reviewed gold set contains only 108 pairs and limited within-candidate ranking comparisons.",
+    "Gold targets have a higher mean than generated train, validation and test targets."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "stage": "Stage 12 FastAPI backend validation",
+  "status": "passed",
+  "api_version": "v1",
+  "model_version": "1.1.0",
+  "ranking_policy": "validation_selected_gnn_sbert_hybrid",
+  "rankable_job_count": 2468,
+  "validated_match_count": 5,
+  "api_direct_engine_job_ids_exact": true,
+  "maximum_api_direct_score_error": 0.0,
+  "checks": {
+    "liveness_endpoint": true,
+    "readiness_endpoint": true,
+    "model_information_endpoint": true,
+    "valid_pdf_analysis": true,
+    "invalid_extension_rejected": true,
+    "invalid_pdf_rejected": true,
+    "allowed_cors_preflight": true,
+    "request_id_header_and_body_match": true,
+    "typed_response_schema": true,
+    "resume_text_not_returned": true,
+    "internal_paths_not_returned": true,
+    "production_policy_loaded": true
+  },
+  "safety": {
+    "training_run": false,
+    "dataset_download_requested": false,
+    "model_download_requested": false,
+    "uploaded_pdf_persisted": false,
+    "single_inference_queue": true
+  }
+}

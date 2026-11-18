@@ -1,0 +1,67 @@
+{
+  "stage": "Stage 11B production ranking policy runtime validation",
+  "status": "passed",
+  "version": "1.1.0",
+  "ranking_policy": "validation_selected_gnn_sbert_hybrid",
+  "weights": {
+    "gnn": 0.78,
+    "sbert": 0.22
+  },
+  "rankable_job_count": 2468,
+  "controlled_scenario_count": 5,
+  "reproduced_top_ten_job_count": 50,
+  "all_top_ten_job_ids_reproduced_exactly": true,
+  "maximum_formula_absolute_error": 0.0,
+  "remaining_html_entity_title_count": 0,
+  "scenario_results": [
+    {
+      "scenario_id": "backend_engineering",
+      "top_ten_job_ids_exact": true,
+      "maximum_score_absolute_error": 4.99e-07,
+      "top_job_id": "linkedin_4407423993",
+      "top_job_title": "Backend Engineer",
+      "top_job_score": 80.597045
+    },
+    {
+      "scenario_id": "frontend_engineering",
+      "top_ten_job_ids_exact": true,
+      "maximum_score_absolute_error": 4.027e-07,
+      "top_job_id": "linkedin_4291895929",
+      "top_job_title": "Freelance Full Stack Developer",
+      "top_job_score": 81.135773
+    },
+    {
+      "scenario_id": "mobile_engineering",
+      "top_ten_job_ids_exact": true,
+      "maximum_score_absolute_error": 4.981e-07,
+      "top_job_id": "linkedin_4403721444",
+      "top_job_title": "Flutter App Developer",
+      "top_job_score": 80.699551
+    },
+    {
+      "scenario_id": "data_and_ai",
+      "top_ten_job_ids_exact": true,
+      "maximum_score_absolute_error": 4.45e-07,
+      "top_job_id": "linkedin_4398861071",
+      "top_job_title": "Data Science- Analyst, Search",
+      "top_job_score": 80.084591
+    },
+    {
+      "scenario_id": "devops_and_cloud",
+      "top_ten_job_ids_exact": true,
+      "maximum_score_absolute_error": 3.844e-07,
+      "top_job_id": "linkedin_4398138025",
+      "top_job_title": "AWS DevOps Engineer",
+      "top_job_score": 77.792782
+    }
+  ],
+  "checkpoint_sha256": "451c94f6893f2bece4115d26099fe026b32845dfe3e2003ad5187e3166646afe",
+  "safety": {
+    "checkpoint_modified_by_validation": false,
+    "training_run": false,
+    "dataset_download_requested": false,
+    "model_download_requested": false,
+    "production_policy_loaded_automatically": true,
+    "ranking_and_display_use_same_hybrid_score": true
+  }
+}

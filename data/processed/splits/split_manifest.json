@@ -1,0 +1,145 @@
+{
+  "configuration": {
+    "random_seed": 42,
+    "split_strategy": "candidate-grouped cold-start split",
+    "training_target_ratio": 0.7,
+    "validation_target_ratio": 0.15,
+    "test_target_ratio": 0.15,
+    "gold_candidates_reserved": true,
+    "stratification": "primary role with origin interleaving"
+  },
+  "source_counts": {
+    "jobs": 2468,
+    "profiles": 640,
+    "generated_labels": 21645,
+    "gold_labels": 108,
+    "generated_label_candidates": 621,
+    "gold_candidates": 79,
+    "profiles_without_generated_labels": 19,
+    "generated_labels_reserved_due_to_gold_candidate": 7215
+  },
+  "splits": {
+    "train": {
+      "candidate_count": 378,
+      "label_count": 10626,
+      "unique_job_count": 1926,
+      "role_distribution": {
+        "data": 52,
+        "devops": 40,
+        "product": 37,
+        "frontend": 34,
+        "fullstack": 30,
+        "marketing": 27,
+        "sales": 27,
+        "operations": 22,
+        "mobile": 21,
+        "legal": 21,
+        "finance": 19,
+        "backend": 16,
+        "hr": 16,
+        "customer_success": 16
+      },
+      "origin_distribution": {
+        "synthetic": 251,
+        "public-dataset-screening-v1": 127
+      },
+      "composite_score_statistics": {
+        "count": 10626,
+        "minimum": 56,
+        "maximum": 96,
+        "mean": 69.458,
+        "median": 67.0
+      }
+    },
+    "validation": {
+      "candidate_count": 82,
+      "label_count": 1808,
+      "unique_job_count": 1009,
+      "role_distribution": {
+        "data": 11,
+        "devops": 9,
+        "product": 8,
+        "frontend": 7,
+        "fullstack": 7,
+        "sales": 6,
+        "marketing": 6,
+        "mobile": 5,
+        "hr": 4,
+        "finance": 4,
+        "operations": 4,
+        "backend": 4,
+        "legal": 4,
+        "customer_success": 3
+      },
+      "origin_distribution": {
+        "synthetic": 55,
+        "public-dataset-screening-v1": 27
+      },
+      "composite_score_statistics": {
+        "count": 1808,
+        "minimum": 56,
+        "maximum": 95,
+        "mean": 69.475,
+        "median": 67.0
+      }
+    },
+    "test": {
+      "candidate_count": 82,
+      "label_count": 1996,
+      "unique_job_count": 1047,
+      "role_distribution": {
+        "data": 11,
+        "devops": 9,
+        "product": 8,
+        "frontend": 7,
+        "fullstack": 7,
+        "sales": 6,
+        "marketing": 6,
+        "mobile": 5,
+        "backend": 4,
+        "hr": 4,
+        "finance": 4,
+        "operations": 4,
+        "legal": 4,
+        "customer_success": 3
+      },
+      "origin_distribution": {
+        "synthetic": 49,
+        "public-dataset-screening-v1": 33
+      },
+      "composite_score_statistics": {
+        "count": 1996,
+        "minimum": 57,
+        "maximum": 95,
+        "mean": 69.264,
+        "median": 67.0
+      }
+    },
+    "gold": {
+      "candidate_count": 79,
+      "label_count": 108,
+      "main_dataset_jobs": 105,
+      "benchmark_dataset_jobs": 2,
+      "low_quality_jobs": 1
+    }
+  },
+  "leakage_checks": {
+    "train_validation_candidate_overlap": 0,
+    "train_test_candidate_overlap": 0,
+    "validation_test_candidate_overlap": 0,
+    "train_gold_candidate_overlap": 0,
+    "validation_gold_candidate_overlap": 0,
+    "test_gold_candidate_overlap": 0,
+    "train_gold_pair_overlap": 0,
+    "validation_gold_pair_overlap": 0,
+    "test_gold_pair_overlap": 0
+  },
+  "graph_training_rules": {
+    "train_candidate_nodes_only_during_training": true,
+    "validation_candidates_added_only_during_validation": true,
+    "test_candidates_added_only_during_testing": true,
+    "gold_candidates_never_used_for_training": true,
+    "all_job_features_available": true,
+    "gold_labels_used_for_model_selection": false
+  }
+}

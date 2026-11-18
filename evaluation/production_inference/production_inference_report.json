@@ -1,0 +1,78 @@
+{
+  "stage": "Production inference validation",
+  "status": "passed",
+  "checkpoint_reproduction": {
+    "train": {
+      "pair_count": 10626,
+      "maximum_skills_absolute_difference": 5e-07,
+      "maximum_composite_absolute_difference": 5e-07,
+      "within_tolerance": true
+    },
+    "validation": {
+      "pair_count": 1808,
+      "maximum_skills_absolute_difference": 5e-07,
+      "maximum_composite_absolute_difference": 5e-07,
+      "within_tolerance": true
+    },
+    "test": {
+      "pair_count": 1996,
+      "maximum_skills_absolute_difference": 5e-07,
+      "maximum_composite_absolute_difference": 5e-07,
+      "within_tolerance": true
+    },
+    "gold": {
+      "pair_count": 108,
+      "maximum_skills_absolute_difference": 5e-07,
+      "maximum_composite_absolute_difference": 5e-07,
+      "within_tolerance": true
+    }
+  },
+  "cold_start_resume": {
+    "detected_skills": [
+      "Agile",
+      "AWS",
+      "CI/CD",
+      "Collaboration",
+      "Django",
+      "Docker",
+      "Documentation",
+      "Git",
+      "GitHub",
+      "PostgreSQL",
+      "Python",
+      "Redis",
+      "REST APIs"
+    ],
+    "detected_skill_count": 13,
+    "returned_match_count": 5,
+    "scores_finite": true,
+    "scores_descending": true,
+    "cold_start_candidate_updates_shared_skills": false,
+    "top_match": {
+      "job_id": "linkedin_4409143770",
+      "title": "Senior Backend Engineer",
+      "raw_composite_score": 80.409668
+    }
+  },
+  "coverage": {
+    "graph_candidates": 640,
+    "embedded_jobs": 2494,
+    "rankable_main_jobs": 2468,
+    "graph_skills": 838
+  },
+  "safety_checks": {
+    "saved_local_sbert_used": true,
+    "saved_gnn_checkpoint_used": true,
+    "dataset_downloaded_during_inference": false,
+    "model_downloaded_during_inference": false,
+    "new_candidate_updates_shared_skill_nodes": false,
+    "raw_predictions_used_for_ranking": true,
+    "display_clipping_changes_ranking": false,
+    "keyword_evidence_changes_numeric_score": false
+  },
+  "known_limitations": [
+    "The training targets are generated compatibility labels, not observed hiring outcomes.",
+    "The human-reviewed gold set is small.",
+    "PDF text extraction quality and resume formatting can affect detected evidence."
+  ]
+}

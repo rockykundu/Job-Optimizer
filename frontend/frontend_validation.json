@@ -1,0 +1,34 @@
+{
+  "stage": 13,
+  "component": "React frontend",
+  "status": "passed",
+  "generated_at": "2026-09-06T18:57:18.844Z",
+  "checks": {
+    "required_files_present": true,
+    "react_typescript_vite": true,
+    "production_api_endpoint": true,
+    "environment_api_url": true,
+    "multipart_pdf_upload": true,
+    "no_manual_content_type": true,
+    "typed_api_contract": true,
+    "no_mock_runtime_results": true,
+    "upload_guards": true,
+    "result_filtering": true,
+    "model_disclaimer": true,
+    "error_state": true,
+    "loading_state": true,
+    "empty_filter_state": true,
+    "responsive_breakpoints": true,
+    "reduced_motion": true,
+    "keyboard_focus": true,
+    "accessible_upload": true,
+    "external_link_safety": true,
+    "score_bounded_for_display": true
+  },
+  "build_output_present": false,
+  "notes": [
+    "This static validator checks source-level integration and safety requirements.",
+    "Run npm run build for TypeScript and production-bundle verification.",
+    "Run the FastAPI backend before testing a real resume in the browser."
+  ]
+}

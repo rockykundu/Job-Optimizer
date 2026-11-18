@@ -1,0 +1,154 @@
+{
+  "stage": "Stage 8A - leakage-safe heterogeneous graph construction",
+  "node_counts": {
+    "candidate": 640,
+    "job": 2494,
+    "skill": 838
+  },
+  "node_feature_shapes": {
+    "candidate": [
+      640,
+      384
+    ],
+    "job": [
+      2494,
+      384
+    ],
+    "skill": [
+      838,
+      384
+    ]
+  },
+  "relation_counts": {
+    "candidate_to_skill": 4509,
+    "job_to_skill": 26432,
+    "candidate_categories_before_deduplication": {
+      "primary": 3052,
+      "secondary": 1457
+    },
+    "job_categories_before_deduplication": {
+      "required": 7122,
+      "preferred": 1301,
+      "mentioned": 18009
+    }
+  },
+  "coverage": {
+    "candidates_with_skill_edges": 640,
+    "candidates_without_skill_edges": 0,
+    "main_jobs_with_skill_edges": 2440,
+    "main_jobs_without_skill_edges": 28,
+    "embedded_extra_jobs_without_extracted_skill_records": 26
+  },
+  "catalogue_alignment": {
+    "catalogue_skill_count": 833,
+    "connected_skill_count": 838,
+    "connected_skills_missing_from_catalogue_count": 5,
+    "connected_skills_missing_from_catalogue": [
+      ".NET",
+      "Artificial Intelligence",
+      "GitHub",
+      "Microsoft SQL Server",
+      "Objective-C"
+    ]
+  },
+  "supervision": {
+    "train": {
+      "pair_count": 10626,
+      "candidate_count": 378,
+      "skills_score_mean": 63.0896,
+      "composite_score_mean": 69.4585
+    },
+    "validation": {
+      "pair_count": 1808,
+      "candidate_count": 82,
+      "skills_score_mean": 62.8285,
+      "composite_score_mean": 69.4746
+    },
+    "test": {
+      "pair_count": 1996,
+      "candidate_count": 82,
+      "skills_score_mean": 62.2239,
+      "composite_score_mean": 69.264
+    },
+    "gold": {
+      "pair_count": 108,
+      "candidate_count": 79,
+      "skills_score_mean": 74.6574,
+      "composite_score_mean": 76.0833
+    }
+  },
+  "leakage_checks": {
+    "candidate_overlaps": {
+      "train_validation": 0,
+      "train_test": 0,
+      "train_gold": 0,
+      "validation_test": 0,
+      "validation_gold": 0,
+      "test_gold": 0
+    },
+    "pair_overlaps": {
+      "train_validation": 0,
+      "train_test": 0,
+      "train_gold": 0,
+      "validation_test": 0,
+      "validation_gold": 0,
+      "test_gold": 0
+    },
+    "all_overlap_counts_zero": true
+  },
+  "graph_semantics": {
+    "message_passing_relations": [
+      "candidate-to-skill",
+      "job-to-skill"
+    ],
+    "candidate_job_labels_used_as_message_passing_edges": false,
+    "candidate_job_labels_stored_as_separate_supervision": true,
+    "candidate_skill_weights": {
+      "primary": 1.0,
+      "secondary": 0.75
+    },
+    "job_skill_weights": {
+      "required": 1.0,
+      "preferred": 0.6,
+      "mentioned": 0.25
+    },
+    "skill_features": "Saved local SBERT model encoding of canonical skill names",
+    "candidate_and_job_features": "Previously saved normalised SBERT embeddings"
+  },
+  "training_visibility_rules": {
+    "train_candidate_split_code": 0,
+    "validation_candidate_split_code": 1,
+    "test_candidate_split_code": 2,
+    "gold_candidate_split_code": 3,
+    "unassigned_candidate_split_code": -1,
+    "training_must_filter_candidate_nodes_to_code_zero": true,
+    "validation_test_gold_labels_available_to_training": false,
+    "all_job_feature_nodes_available": true
+  },
+  "input_files": {
+    "profiles": "data\\processed\\profiles_skills_normalized.json",
+    "jobs": "data\\processed\\jobs_skills_extracted.json",
+    "skill_catalog": "data\\processed\\skill_catalog.json",
+    "candidate_embeddings": "models\\sbert\\candidate_embeddings.npy",
+    "job_embeddings": "models\\sbert\\job_embeddings.npy",
+    "splits": {
+      "train": "data\\processed\\splits\\train_labels.json",
+      "validation": "data\\processed\\splits\\validation_labels.json",
+      "test": "data\\processed\\splits\\test_labels.json",
+      "gold": "data\\processed\\splits\\gold_evaluation.json"
+    }
+  },
+  "output_files": [
+    "node_features.npz",
+    "graph_edges.npz",
+    "candidate_splits.npz",
+    "train_supervision.npz",
+    "validation_supervision.npz",
+    "test_supervision.npz",
+    "gold_supervision.npz",
+    "candidate_ids.json",
+    "job_ids.json",
+    "skill_ids.json",
+    "graph_manifest.json"
+  ]
+}

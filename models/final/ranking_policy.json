@@ -1,0 +1,39 @@
+{
+  "policy_name": "validation_selected_gnn_sbert_hybrid",
+  "version": "1.1.0",
+  "status": "production",
+  "weights": {
+    "gnn": 0.78,
+    "sbert": 0.22
+  },
+  "sbert_composite_calibrator": {
+    "slope": 38.39270780124961,
+    "intercept": 50.37185623915759,
+    "fitted_on": "training_labels_only"
+  },
+  "selection": {
+    "split": "validation",
+    "primary_objective": "candidate-centred composite NDCG@10",
+    "secondary_objective": "pairwise ranking accuracy",
+    "guardrails": {
+      "minimum_ndcg_at_10_gain": 0.002,
+      "maximum_pairwise_accuracy_decrease": 0.005,
+      "maximum_mae_increase_ratio": 0.05
+    },
+    "accepted_by_validation_guardrails": true
+  },
+  "score_policy": {
+    "formula": "gnn_weight * gnn_composite + sbert_weight * calibrated_sbert_composite",
+    "ranking_and_display_use_same_score": true,
+    "artificial_offset": false,
+    "manual_score_cap": false
+  },
+  "promoted_at_utc": "2026-09-06T07:03:13+00:00",
+  "promotion_evidence": {
+    "selection_report": "evaluation\\ranking_policy\\hybrid_ranking_selection_report.json",
+    "controlled_profile_report": "evaluation\\ranking_policy\\controlled_profile_comparison.json",
+    "validation_ndcg_at_10_gain": 0.004264,
+    "test_ndcg_at_10_gain": 0.01178,
+    "controlled_top_ten_expected_hit_change": 5
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "stage": "Streamlit production integration validation",
+  "status": "passed",
+  "static_app_audit": {
+    "python_syntax_valid": true,
+    "legacy_online_model_loading_removed": true,
+    "legacy_jobs_json_removed": true,
+    "legacy_fixed_weight_score_removed": true,
+    "legacy_hard_coded_skill_list_removed": true,
+    "production_engine_connected": true,
+    "unavailable_skill_evidence_handled": true,
+    "compatibility_disclaimer_present": true
+  },
+  "runtime_engine_audit": {
+    "engine_loaded": true,
+    "rankable_job_count": 2468,
+    "detected_skill_count": 11,
+    "returned_match_count": 5,
+    "ranked_by_raw_score": true,
+    "display_scores_within_zero_and_one_hundred": true,
+    "cold_start_candidate_updates_shared_skills": false,
+    "top_match": {
+      "job_id": "linkedin_4409143770",
+      "title": "Senior Backend Engineer",
+      "raw_composite_score": 81.406258,
+      "structured_skill_evidence_available": false
+    }
+  },
+  "streamlit_headless_audit": {
+    "status": "passed",
+    "uncaught_exceptions": 0
+  },
+  "safety_checks": {
+    "training_not_run": true,
+    "dataset_download_not_requested": true,
+    "model_download_not_requested": true,
+    "raw_model_scores_used_for_ranking": true,
+    "display_clipping_only": true,
+    "keyword_evidence_does_not_change_numeric_score": true
+  }
+}

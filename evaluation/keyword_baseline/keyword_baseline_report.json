@@ -1,0 +1,201 @@
+{
+  "model": {
+    "name": "Keyword and skill coverage baseline",
+    "type": "deterministic non-trained baseline"
+  },
+  "weights": {
+    "candidate_primary": 1.0,
+    "candidate_secondary": 0.75,
+    "job_required": 1.0,
+    "job_preferred": 0.6,
+    "job_mentioned": 0.25
+  },
+  "splits": {
+    "train": {
+      "split": "train",
+      "input_labels": 10626,
+      "prediction_records": 10626,
+      "available_scores": 10527,
+      "unavailable_reasons": {
+        "job_has_no_detected_skills": 99
+      },
+      "skills_target_metrics": {
+        "evaluated_pairs": 10527,
+        "mae": 57.0455,
+        "rmse": 58.0864,
+        "pearson": 0.577,
+        "spearman": 0.5743
+      },
+      "composite_target_metrics": {
+        "evaluated_pairs": 10527,
+        "mae": 63.4356,
+        "rmse": 64.1201,
+        "pearson": 0.5069,
+        "spearman": 0.4962
+      },
+      "skills_target_ranking": {
+        "ndcg_at_5": {
+          "candidate_count": 363,
+          "mean": 0.8965
+        },
+        "ndcg_at_10": {
+          "candidate_count": 363,
+          "mean": 0.9192
+        }
+      },
+      "composite_target_ranking": {
+        "ndcg_at_5": {
+          "candidate_count": 363,
+          "mean": 0.9316
+        },
+        "ndcg_at_10": {
+          "candidate_count": 363,
+          "mean": 0.9455
+        }
+      }
+    },
+    "validation": {
+      "split": "validation",
+      "input_labels": 1808,
+      "prediction_records": 1808,
+      "available_scores": 1790,
+      "unavailable_reasons": {
+        "job_has_no_detected_skills": 18
+      },
+      "skills_target_metrics": {
+        "evaluated_pairs": 1790,
+        "mae": 56.7928,
+        "rmse": 57.9061,
+        "pearson": 0.5302,
+        "spearman": 0.5372
+      },
+      "composite_target_metrics": {
+        "evaluated_pairs": 1790,
+        "mae": 63.4761,
+        "rmse": 64.2139,
+        "pearson": 0.462,
+        "spearman": 0.468
+      },
+      "skills_target_ranking": {
+        "ndcg_at_5": {
+          "candidate_count": 76,
+          "mean": 0.9077
+        },
+        "ndcg_at_10": {
+          "candidate_count": 76,
+          "mean": 0.9262
+        }
+      },
+      "composite_target_ranking": {
+        "ndcg_at_5": {
+          "candidate_count": 76,
+          "mean": 0.9387
+        },
+        "ndcg_at_10": {
+          "candidate_count": 76,
+          "mean": 0.9517
+        }
+      }
+    },
+    "test": {
+      "split": "test",
+      "input_labels": 1996,
+      "prediction_records": 1996,
+      "available_scores": 1981,
+      "unavailable_reasons": {
+        "job_has_no_detected_skills": 15
+      },
+      "skills_target_metrics": {
+        "evaluated_pairs": 1981,
+        "mae": 57.5923,
+        "rmse": 58.6725,
+        "pearson": 0.5166,
+        "spearman": 0.499
+      },
+      "composite_target_metrics": {
+        "evaluated_pairs": 1981,
+        "mae": 64.612,
+        "rmse": 65.2721,
+        "pearson": 0.4317,
+        "spearman": 0.4292
+      },
+      "skills_target_ranking": {
+        "ndcg_at_5": {
+          "candidate_count": 79,
+          "mean": 0.9016
+        },
+        "ndcg_at_10": {
+          "candidate_count": 79,
+          "mean": 0.9183
+        }
+      },
+      "composite_target_ranking": {
+        "ndcg_at_5": {
+          "candidate_count": 79,
+          "mean": 0.9354
+        },
+        "ndcg_at_10": {
+          "candidate_count": 79,
+          "mean": 0.9465
+        }
+      }
+    },
+    "gold": {
+      "split": "gold",
+      "input_labels": 108,
+      "prediction_records": 108,
+      "available_scores": 105,
+      "unavailable_reasons": {
+        "job_not_available": 3
+      },
+      "skills_target_metrics": {
+        "evaluated_pairs": 105,
+        "mae": 61.6843,
+        "rmse": 63.0832,
+        "pearson": 0.6787,
+        "spearman": 0.689
+      },
+      "composite_target_metrics": {
+        "evaluated_pairs": 105,
+        "mae": 62.989,
+        "rmse": 64.027,
+        "pearson": 0.7118,
+        "spearman": 0.6751
+      },
+      "skills_target_ranking": {
+        "ndcg_at_5": {
+          "candidate_count": 20,
+          "mean": 0.9909
+        },
+        "ndcg_at_10": {
+          "candidate_count": 20,
+          "mean": 0.9909
+        }
+      },
+      "composite_target_ranking": {
+        "ndcg_at_5": {
+          "candidate_count": 20,
+          "mean": 0.9933
+        },
+        "ndcg_at_10": {
+          "candidate_count": 20,
+          "mean": 0.9933
+        }
+      }
+    }
+  },
+  "interpretation": {
+    "primary_target": "skills_score",
+    "secondary_target": "composite_score",
+    "score_calibration": "No artificial score offset or cap",
+    "gold_limit": "Benchmark and excluded low-quality jobs without enriched features are reported as unavailable."
+  },
+  "safety_rules": {
+    "generated_matches_used": false,
+    "generated_gaps_used": false,
+    "generated_scores_used_as_inputs": false,
+    "gold_used_for_weight_tuning": false,
+    "artificial_score_offset": false,
+    "artificial_score_cap": false
+  }
+}

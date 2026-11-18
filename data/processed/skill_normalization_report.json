@@ -1,0 +1,41 @@
+{
+  "input": {
+    "profile_count": 640,
+    "raw_primary_occurrences": 3052,
+    "raw_secondary_occurrences": 1457,
+    "raw_unique_case_insensitive_skills": 844
+  },
+  "output": {
+    "normalized_profile_count": 640,
+    "canonical_skill_count": 835,
+    "normalized_primary_occurrences": 3052,
+    "normalized_secondary_occurrences": 1457
+  },
+  "normalization_actions": {
+    "alias_occurrences_processed": 1192,
+    "empty_skills_removed": 0,
+    "primary_duplicates_removed": 0,
+    "secondary_duplicates_removed": 0,
+    "primary_secondary_overlaps_removed": 0
+  },
+  "quality_review": {
+    "suspicious_skill_count": 1,
+    "suspicious_skills": [
+      {
+        "skill": "R",
+        "reasons": [
+          "single_character"
+        ],
+        "occurrences": 1
+      }
+    ],
+    "warnings": []
+  },
+  "safety_rules": {
+    "original_skills_preserved": true,
+    "uncertain_aliases_automatically_merged": false,
+    "generated_label_matches_used": false,
+    "generated_label_gaps_used": false,
+    "job_skills_extracted_during_this_stage": false
+  }
+}

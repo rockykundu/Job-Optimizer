@@ -1,0 +1,190 @@
+{
+  "stage": "Stage 11 candidate hybrid ranking selection",
+  "status": "candidate_policy_created",
+  "promotion_status": "not_promoted_pending_controlled_profile_review",
+  "selection": {
+    "weights": {
+      "gnn": 0.78,
+      "sbert": 0.22
+    },
+    "accepted_by_validation_guardrails": true,
+    "baseline_gnn_metrics": {
+      "pair_count": 1808,
+      "candidate_count": 82,
+      "mae": 4.255726,
+      "ndcg_at_5": 0.800635,
+      "ndcg_at_10": 0.829421,
+      "pairwise_accuracy": 0.727219,
+      "prediction_minimum": 59.899727,
+      "prediction_maximum": 87.03624,
+      "prediction_standard_deviation": 5.911759
+    },
+    "candidate_hybrid_metrics": {
+      "pair_count": 1808,
+      "candidate_count": 82,
+      "mae": 4.249036,
+      "ndcg_at_5": 0.813472,
+      "ndcg_at_10": 0.833685,
+      "pairwise_accuracy": 0.729444,
+      "prediction_minimum": 60.335221,
+      "prediction_maximum": 84.996699,
+      "prediction_standard_deviation": 5.228497
+    },
+    "ndcg_at_10_gain": 0.004264,
+    "pairwise_accuracy_change": 0.002225,
+    "mae_change_ratio": -0.001572,
+    "eligible_weight_count": 50,
+    "evaluated_weight_count": 101
+  },
+  "split_evaluations": {
+    "train": {
+      "gnn": {
+        "pair_count": 10626,
+        "candidate_count": 378,
+        "mae": 3.678308,
+        "ndcg_at_5": 0.823657,
+        "ndcg_at_10": 0.845852,
+        "pairwise_accuracy": 0.756988,
+        "prediction_minimum": 58.819977,
+        "prediction_maximum": 91.042252,
+        "prediction_standard_deviation": 6.20157
+      },
+      "sbert": {
+        "pair_count": 10626,
+        "candidate_count": 378,
+        "mae": 5.183185,
+        "ndcg_at_5": 0.749383,
+        "ndcg_at_10": 0.779252,
+        "pairwise_accuracy": 0.674689,
+        "prediction_minimum": 54.4543,
+        "prediction_maximum": 81.7255,
+        "prediction_standard_deviation": 4.242566
+      },
+      "candidate_hybrid": {
+        "pair_count": 10626,
+        "candidate_count": 378,
+        "mae": 3.776635,
+        "ndcg_at_5": 0.827604,
+        "ndcg_at_10": 0.84734,
+        "pairwise_accuracy": 0.754547,
+        "prediction_minimum": 59.151206,
+        "prediction_maximum": 88.246701,
+        "prediction_standard_deviation": 5.492928
+      }
+    },
+    "validation": {
+      "gnn": {
+        "pair_count": 1808,
+        "candidate_count": 82,
+        "mae": 4.255726,
+        "ndcg_at_5": 0.800635,
+        "ndcg_at_10": 0.829421,
+        "pairwise_accuracy": 0.727219,
+        "prediction_minimum": 59.899727,
+        "prediction_maximum": 87.03624,
+        "prediction_standard_deviation": 5.911759
+      },
+      "sbert": {
+        "pair_count": 1808,
+        "candidate_count": 82,
+        "mae": 5.226422,
+        "ndcg_at_5": 0.746891,
+        "ndcg_at_10": 0.786263,
+        "pairwise_accuracy": 0.669183,
+        "prediction_minimum": 53.3892,
+        "prediction_maximum": 81.2916,
+        "prediction_standard_deviation": 4.037041
+      },
+      "candidate_hybrid": {
+        "pair_count": 1808,
+        "candidate_count": 82,
+        "mae": 4.249036,
+        "ndcg_at_5": 0.813472,
+        "ndcg_at_10": 0.833685,
+        "pairwise_accuracy": 0.729444,
+        "prediction_minimum": 60.335221,
+        "prediction_maximum": 84.996699,
+        "prediction_standard_deviation": 5.228497
+      }
+    },
+    "test": {
+      "gnn": {
+        "pair_count": 1996,
+        "candidate_count": 82,
+        "mae": 4.447739,
+        "ndcg_at_5": 0.760989,
+        "ndcg_at_10": 0.793264,
+        "pairwise_accuracy": 0.70689,
+        "prediction_minimum": 58.98703,
+        "prediction_maximum": 85.260658,
+        "prediction_standard_deviation": 5.728723
+      },
+      "sbert": {
+        "pair_count": 1996,
+        "candidate_count": 82,
+        "mae": 5.128062,
+        "ndcg_at_5": 0.742795,
+        "ndcg_at_10": 0.775138,
+        "pairwise_accuracy": 0.672525,
+        "prediction_minimum": 53.6529,
+        "prediction_maximum": 80.9351,
+        "prediction_standard_deviation": 4.234367
+      },
+      "candidate_hybrid": {
+        "pair_count": 1996,
+        "candidate_count": 82,
+        "mae": 4.350581,
+        "ndcg_at_5": 0.776745,
+        "ndcg_at_10": 0.805044,
+        "pairwise_accuracy": 0.715314,
+        "prediction_minimum": 60.040979,
+        "prediction_maximum": 83.314348,
+        "prediction_standard_deviation": 5.077355
+      }
+    },
+    "gold": {
+      "gnn": {
+        "pair_count": 108,
+        "candidate_count": 79,
+        "mae": 5.448539,
+        "ndcg_at_5": 0.903946,
+        "ndcg_at_10": 0.903946,
+        "pairwise_accuracy": 0.722222,
+        "prediction_minimum": 62.546425,
+        "prediction_maximum": 87.517426,
+        "prediction_standard_deviation": 6.868042
+      },
+      "sbert": {
+        "pair_count": 108,
+        "candidate_count": 79,
+        "mae": 7.439441,
+        "ndcg_at_5": 0.847592,
+        "ndcg_at_10": 0.847592,
+        "pairwise_accuracy": 0.666667,
+        "prediction_minimum": 60.4246,
+        "prediction_maximum": 79.3794,
+        "prediction_standard_deviation": 4.158213
+      },
+      "candidate_hybrid": {
+        "pair_count": 108,
+        "candidate_count": 79,
+        "mae": 5.598772,
+        "ndcg_at_5": 0.918713,
+        "ndcg_at_10": 0.918713,
+        "pairwise_accuracy": 0.75,
+        "prediction_minimum": 63.304932,
+        "prediction_maximum": 85.200336,
+        "prediction_standard_deviation": 6.01435
+      }
+    }
+  },
+  "policy_path": "models\\candidate\\hybrid_ranking_policy.json",
+  "leakage_controls": {
+    "weights_selected_from_validation_only": true,
+    "test_loaded_after_weights_frozen": true,
+    "gold_loaded_after_weights_frozen": true,
+    "test_used_for_weight_selection": false,
+    "gold_used_for_weight_selection": false,
+    "checkpoint_retrained": false
+  }
+}

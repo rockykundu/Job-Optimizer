@@ -1,0 +1,40 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!.env.api.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Frontend
+node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+
+# Build and cache
+dist/
+build/
+.cache/
+*.log
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary archives and backups
+*.zip
+*.backup.*
+
+
+!.env.api.example

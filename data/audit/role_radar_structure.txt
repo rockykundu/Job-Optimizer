@@ -1,0 +1,217 @@
+ROLE RADAR DATASET — STRUCTURAL INSPECTION
+Dataset directory: C:\Users\rocky\Documents\websiter.bh\Job-Optimizer\data\raw
+
+================================================================================
+FILE: scraped_jobs.json
+SIZE: 9,917,593 bytes
+Root JSON type: list
+Primary record collection: JSON root
+Record count: 2,500
+Record types: {'dict': 2500}
+Unique fields: 16
+Field coverage and detected value types:
+  - company: present=2,500/2,500, null=0, types=['str']
+  - description: present=2,500/2,500, null=0, types=['str']
+  - domain_hint: present=2,500/2,500, null=2,500, types=[]
+  - employment_type: present=2,500/2,500, null=0, types=['str']
+  - experience_years_hint: present=2,500/2,500, null=2,500, types=[]
+  - id: present=2,500/2,500, null=0, types=['str']
+  - industry: present=2,500/2,500, null=0, types=['str']
+  - job_function: present=2,500/2,500, null=7, types=['str']
+  - location: present=2,500/2,500, null=1, types=['str']
+  - posted_at: present=2,500/2,500, null=2,500, types=[]
+  - remote_hint: present=2,500/2,500, null=0, types=['bool']
+  - role_family_hint: present=2,500/2,500, null=0, types=['str']
+  - scraped_at: present=2,500/2,500, null=0, types=['str']
+  - seniority_level: present=2,500/2,500, null=0, types=['str']
+  - title: present=2,500/2,500, null=0, types=['str']
+  - url: present=2,500/2,500, null=0, types=['str']
+
+First-record preview:
+  - id: string: linkedin_4404078812
+  - title: string: Software Engineer - Development
+  - company: string: Cisco
+  - location: string: Bengaluru, Karnataka, India
+  - description: string: Please note this posting is to advertise potential job opportunities. This exact role may not be open today but could open in the near futur...
+  - seniority_level: string: Not Applicable
+  - employment_type: string: Full-time
+  - job_function: string: Engineering and Information Technology
+  - industry: string: Software Development
+  - url: string: https://www.linkedin.com/jobs/view/4404078812
+  - posted_at: null
+  - scraped_at: string: 2026-04-30
+  - role_family_hint: string: fullstack
+  - domain_hint: null
+  - experience_years_hint: null
+  - remote_hint: boolean
+
+================================================================================
+FILE: synthetic_profiles.json
+SIZE: 427,918 bytes
+Root JSON type: list
+Primary record collection: JSON root
+Record count: 640
+Record types: {'dict': 640}
+Unique fields: 11
+Field coverage and detected value types:
+  - career_intent: present=640/640, null=0, types=['str']
+  - data_origin: present=202/640, null=0, types=['str']
+  - dealbreakers: present=640/640, null=0, types=['list']
+  - domains: present=640/640, null=0, types=['list']
+  - experience_years: present=640/640, null=0, types=['int']
+  - preferences: present=640/640, null=0, types=['dict']
+  - profile_id: present=640/640, null=0, types=['int']
+  - roles: present=640/640, null=0, types=['list']
+  - seniority: present=640/640, null=0, types=['str']
+  - skills_primary: present=640/640, null=0, types=['list']
+  - skills_secondary: present=640/640, null=0, types=['list']
+
+First-record preview:
+  - profile_id: integer
+  - roles: list with 1 items
+      First list item: string: Junior Backend Engineer
+  - skills_primary: list with 3 items
+      First list item: string: Python
+  - skills_secondary: list with 2 items
+      First list item: string: Docker
+  - experience_years: integer
+  - seniority: string: Junior
+  - domains: list with 1 items
+      First list item: string: E-commerce
+  - preferences: object with 4 fields
+      - locations: list with 1 items
+      - remote: boolean
+      - min_salary: null
+      - company_sizes: list with 0 items
+  - career_intent: string: Looking for early-career backend roles at product companies
+  - dealbreakers: list with 0 items
+
+================================================================================
+FILE: phase3_pairs.json
+SIZE: 1,364,948 bytes
+Root JSON type: list
+Primary record collection: JSON root
+Record count: 5,000
+Record types: {'dict': 5000}
+Unique fields: 8
+Field coverage and detected value types:
+  - job_id: present=5,000/5,000, null=0, types=['str']
+  - job_role_family: present=5,000/5,000, null=0, types=['str']
+  - pair_id: present=5,000/5,000, null=0, types=['str']
+  - pair_type: present=5,000/5,000, null=0, types=['str']
+  - profile_id: present=5,000/5,000, null=0, types=['int']
+  - profile_role_family: present=5,000/5,000, null=0, types=['str']
+  - profile_seniority: present=5,000/5,000, null=0, types=['str']
+  - skill_overlap: present=5,000/5,000, null=0, types=['float']
+
+First-record preview:
+  - pair_id: string: 170_linkedin_4383910678
+  - profile_id: integer
+  - job_id: string: linkedin_4383910678
+  - pair_type: string: positive
+  - profile_role_family: string: hr
+  - job_role_family: string: hr
+  - profile_seniority: string: Junior
+  - skill_overlap: float
+
+================================================================================
+FILE: phase3_labels.json
+SIZE: 8,830,592 bytes
+Root JSON type: list
+Primary record collection: JSON root
+Record count: 22,465
+Record types: {'dict': 22465}
+Unique fields: 11
+Field coverage and detected value types:
+  - composite: present=22,465/22,465, null=0, types=['int']
+  - confidence: present=22,465/22,465, null=0, types=['str']
+  - domain: present=22,465/22,465, null=0, types=['int']
+  - gaps: present=22,465/22,465, null=0, types=['list']
+  - label_source: present=22,465/22,465, null=0, types=['str']
+  - location: present=22,465/22,465, null=0, types=['int']
+  - matches: present=22,465/22,465, null=0, types=['list']
+  - overqualified: present=22,465/22,465, null=0, types=['bool']
+  - pair_id: present=22,465/22,465, null=0, types=['str']
+  - seniority: present=22,465/22,465, null=0, types=['int']
+  - skills: present=22,465/22,465, null=0, types=['int']
+
+First-record preview:
+  - pair_id: string: 19_linkedin_4374745665
+  - skills: integer
+  - seniority: integer
+  - domain: integer
+  - location: integer
+  - composite: integer
+  - overqualified: boolean
+  - matches: list with 2 items
+      First list item: string: Backend Engineer
+  - gaps: list with 2 items
+      First list item: string: React
+  - label_source: string: gemini-2.5-flash-lite+static
+  - confidence: string: high
+
+================================================================================
+FILE: gold_labels.json
+SIZE: 38,208 bytes
+Root JSON type: list
+Primary record collection: JSON root
+Record count: 108
+Record types: {'dict': 108}
+Unique fields: 13
+Field coverage and detected value types:
+  - composite: present=108/108, null=0, types=['int']
+  - domain: present=108/108, null=0, types=['int']
+  - gaps: present=60/108, null=0, types=['list']
+  - job_family: present=60/108, null=0, types=['str']
+  - location: present=108/108, null=0, types=['int']
+  - matches: present=60/108, null=0, types=['list']
+  - overqualified: present=108/108, null=0, types=['bool']
+  - pair_id: present=108/108, null=0, types=['str']
+  - reasoning: present=48/108, null=0, types=['str']
+  - review_status: present=60/108, null=0, types=['str']
+  - seniority: present=108/108, null=0, types=['int']
+  - skills: present=108/108, null=0, types=['int']
+  - strategy: present=60/108, null=0, types=['str']
+
+First-record preview:
+  - pair_id: string: 13_linkedin_4392811970
+  - skills: integer
+  - seniority: integer
+  - domain: integer
+  - location: integer
+  - composite: integer
+  - overqualified: boolean
+  - reasoning: string: Sr Backend (TS/Node/PG/GraphQL) × Fullstack @PwC. All skills match. Senior 8yr fits Mid-Senior. Bangalore.
+
+================================================================================
+FILE: benchmarks.json
+SIZE: 24,426 bytes
+Root JSON type: dict
+Root fields: ['baselines', 'benchmark_profile', 'jobs']
+Primary record collection: root['jobs']
+Record count: 25
+Record types: {'dict': 25}
+Unique fields: 10
+Field coverage and detected value types:
+  - company: present=25/25, null=0, types=['str']
+  - description: present=25/25, null=0, types=['str']
+  - domain_hint: present=25/25, null=0, types=['str']
+  - experience_years_hint: present=25/25, null=0, types=['int']
+  - id: present=25/25, null=0, types=['str']
+  - location: present=25/25, null=0, types=['str']
+  - remote_hint: present=25/25, null=0, types=['bool']
+  - role_family_hint: present=25/25, null=0, types=['str']
+  - seniority_hint: present=25/25, null=0, types=['str']
+  - title: present=25/25, null=0, types=['str']
+
+First-record preview:
+  - id: string: job_1
+  - title: string: Senior Backend Engineer
+  - company: string: Stripe
+  - location: string: Bangalore, India
+  - seniority_hint: string: Senior
+  - role_family_hint: string: backend
+  - domain_hint: string: Fintech
+  - experience_years_hint: integer
+  - remote_hint: boolean
+  - description: string: We're looking for a Senior Backend Engineer to build and scale our payment infrastructure serving millions of merchants worldwide.  Requirem...

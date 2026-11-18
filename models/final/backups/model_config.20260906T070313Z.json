@@ -1,0 +1,31 @@
+{
+  "model_name": "Job Optimizer Semantic Graph Matcher",
+  "version": "1.0.0",
+  "numeric_model": {
+    "type": "sbert_weighted_heterogeneous_gnn",
+    "checkpoint": "models/gnn/heterogeneous_gnn.pt",
+    "target_selection": {
+      "skills": "gnn",
+      "composite": "gnn"
+    }
+  },
+  "explanation_model": {
+    "type": "deterministic_weighted_skill_evidence",
+    "candidate_weights": {
+      "primary": 1.0,
+      "secondary": 0.75
+    },
+    "job_weights": {
+      "required": 1.0,
+      "preferred": 0.6,
+      "mentioned": 0.25
+    },
+    "purpose": "Display matched skills and missing required/preferred skills; do not fabricate evidence."
+  },
+  "score_policy": {
+    "artificial_fixed_offset": false,
+    "artificial_score_cap_during_evaluation": false,
+    "gold_used_for_tuning": false
+  },
+  "evaluation_report": "evaluation/final_model/final_model_report.json"
+}

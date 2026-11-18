@@ -1,0 +1,797 @@
+{
+  "input": {
+    "job_count": 2468,
+    "profile_count": 640
+  },
+  "output": {
+    "enriched_job_count": 2468,
+    "enriched_profile_count": 640,
+    "high_confidence_role_disagreements": 516,
+    "jobs_with_experience_detected": 1295,
+    "jobs_without_experience_detected": 1173
+  },
+  "job_role_distribution": {
+    "fullstack": 464,
+    "data": 227,
+    "sales": 219,
+    "operations": 195,
+    "product": 193,
+    "marketing": 184,
+    "hr": 182,
+    "finance": 176,
+    "backend": 165,
+    "frontend": 129,
+    "devops": 109,
+    "customer_success": 67,
+    "legal": 62,
+    "mobile": 52,
+    "non-tech": 44
+  },
+  "candidate_role_distribution": {
+    "data": 81,
+    "devops": 69,
+    "product": 64,
+    "frontend": 59,
+    "fullstack": 52,
+    "mobile": 43,
+    "marketing": 43,
+    "sales": 41,
+    "backend": 37,
+    "operations": 35,
+    "legal": 32,
+    "finance": 31,
+    "hr": 29,
+    "customer_success": 26
+  },
+  "unknown_candidate_role_titles": [],
+  "job_seniority_distribution": {
+    "Senior": 1110,
+    "Mid": 407,
+    "Unknown": 291,
+    "Junior": 250,
+    "Staff": 243,
+    "Intern": 167
+  },
+  "experience_extraction_sources": {
+    "not_detected": 1173,
+    "description": 1163,
+    "title_inference": 132
+  },
+  "country_distribution_top_25": {
+    "India": 2206,
+    "United States": 230,
+    "United Kingdom": 6,
+    "Philippines": 4,
+    "China": 4,
+    "Indonesia": 2,
+    "Jordan": 2,
+    "Unknown": 1,
+    "Brazil": 1,
+    "Australia": 1,
+    "Pakistan": 1,
+    "Bulgaria": 1,
+    "Israel": 1,
+    "Canada": 1,
+    "Malaysia": 1,
+    "Saudi Arabia": 1,
+    "Vietnam": 1,
+    "Thailand": 1,
+    "Singapore": 1,
+    "Germany": 1,
+    "Spain": 1
+  },
+  "remote_distribution": {
+    "not_remote": 2328,
+    "remote": 140
+  },
+  "role_disagreement_sample": [
+    {
+      "id": "linkedin_4393561018",
+      "title": "Software Engineer",
+      "source_role": "backend",
+      "derived_role": "fullstack",
+      "matched_rule": "\\bsoftware engineer\\b"
+    },
+    {
+      "id": "linkedin_4335191260",
+      "title": "Software Engineer - Optimizely Developer",
+      "source_role": "backend",
+      "derived_role": "fullstack",
+      "matched_rule": "\\bsoftware engineer\\b"
+    },
+    {
+      "id": "linkedin_4402165865",
+      "title": "IN_Associate_ Full Stack Developer (Frontend + Java)_Data and Analytics_Advisory_Mumbai",
+      "source_role": "frontend",
+      "derived_role": "fullstack",
+      "matched_rule": "\\bfull[\\s-]?stack\\b"
+    },
+    {
+      "id": "linkedin_4385027367",
+      "title": "Fullstack PHP Developer",
+      "source_role": "frontend",
+      "derived_role": "fullstack",
+      "matched_rule": "\\bfull[\\s-]?stack\\b"
+    },
+    {
+      "id": "linkedin_4374745665",
+      "title": "Full Stack Engineer",
+      "source_role": "backend",
+      "derived_role": "fullstack",
+      "matched_rule": "\\bfull[\\s-]?stack\\b"
+    },
+    {
+      "id": "linkedin_4398356168",
+      "title": "Intermediate Backend Engineer, SSCS: Supply Chain",
+      "source_role": "non-tech",
+      "derived_role": "backend",
+      "matched_rule": "\\bbackend engineer\\b"
+    },
+    {
+      "id": "linkedin_4398109498",
+      "title": "Full Stack developer",
+      "source_role": "frontend",
+      "derived_role": "fullstack",
+      "matched_rule": "\\bfull[\\s-]?stack\\b"
+    },
+    {
+      "id": "linkedin_4398177907",
+      "title": "Software Test Engineer - IXLI",
+      "source_role": "backend",
+      "derived_role": "fullstack",
+      "matched_rule": "\\btest engineer\\b"
+    },
+    {
+      "id": "linkedin_4393928942",
+      "title": "Web Developer",
+      "source_role": "frontend",
+      "derived_role": "fullstack",
+      "matched_rule": "\\bweb developer\\b"
+    },
+    {
+      "id": "linkedin_4400425428",
+      "title": ".NET Full Stack Developer",
+      "source_role": "backend",
+      "derived_role": "fullstack",
+      "matched_rule": "\\bfull[\\s-]?stack\\b"
+    },
+    {
+      "id": "linkedin_4344341423",
+      "title": "Cloud Engineer I",
+      "source_role": "non-tech",
+      "derived_role": "devops",
+      "matched_rule": "\\bcloud engineer\\b"
+    },
+    {
+      "id": "linkedin_4380120870",
+      "title": "Cloud Solutions Engineer / Cloud Architect",
+      "source_role": "fullstack",
+      "derived_role": "devops",
+      "matched_rule": "\\bcloud architect\\b"
+    },
+    {
+      "id": "linkedin_4393034116",
+      "title": "Data Analyst",
+      "source_role": "non-tech",
+      "derived_role": "data",
+      "matched_rule": "\\bdata analyst\\b"
+    },
+    {
+      "id": "linkedin_4196613050",
+      "title": "New Car Sales Associate",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4394920744",
+      "title": "Portfolio Operations Specialist",
+      "source_role": "fullstack",
+      "derived_role": "operations",
+      "matched_rule": "\\boperations?\\b"
+    },
+    {
+      "id": "linkedin_4402212721",
+      "title": "Project Manager (POP Displays)",
+      "source_role": "fullstack",
+      "derived_role": "product",
+      "matched_rule": "\\bproject manager\\b"
+    },
+    {
+      "id": "linkedin_4382710448",
+      "title": "Retail Sales Operations Associate",
+      "source_role": "product",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4408748611",
+      "title": "Automotive Sales Consultant",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4394456781",
+      "title": "Senior Manager – Service Delivery",
+      "source_role": "non-tech",
+      "derived_role": "customer_success",
+      "matched_rule": "\\bservice delivery\\b"
+    },
+    {
+      "id": "linkedin_4387283659",
+      "title": "Sr. Customer Success Manager",
+      "source_role": "non-tech",
+      "derived_role": "customer_success",
+      "matched_rule": "\\bcustomer success\\b"
+    },
+    {
+      "id": "linkedin_4015918607",
+      "title": "Senior Engineer / Assistant Manager - Sales",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4366909142",
+      "title": "Cybersecurity Specialist",
+      "source_role": "fullstack",
+      "derived_role": "devops",
+      "matched_rule": "\\bcybersecurity\\b"
+    },
+    {
+      "id": "linkedin_4360652943",
+      "title": "Area Manager - Medical equipment Finance/Senior Area Manager - Medical equipment Finance",
+      "source_role": "non-tech",
+      "derived_role": "finance",
+      "matched_rule": "\\bfinance\\b"
+    },
+    {
+      "id": "linkedin_4393558602",
+      "title": "Territory Manager - Salaried",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bterritory manager\\b"
+    },
+    {
+      "id": "linkedin_4399821348",
+      "title": "Key Account Manager",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bkey account manager\\b"
+    },
+    {
+      "id": "linkedin_4275939038",
+      "title": "Key Account Manager",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bkey account manager\\b"
+    },
+    {
+      "id": "linkedin_4396676044",
+      "title": "Key Account Manager-Enterprise",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bkey account manager\\b"
+    },
+    {
+      "id": "linkedin_4388463696",
+      "title": "GCC Sales",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4393558603",
+      "title": "Senior Sales Manager",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4398002106",
+      "title": "Sales Account Manager - Automotive, Pune (West India)",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4355100899",
+      "title": "Regional Sales Manager (Maharashtra)",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4396272051",
+      "title": "Area Sales Manager - Home Loan",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4344342501",
+      "title": "Area Sales Manager",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4397571569",
+      "title": "Area Sales Manager",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4402757382",
+      "title": "Sourcing Manager - Luxury Sales - Baner (Pune)",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4389716229",
+      "title": "Assistant Manager - Sales &amp; Specifications",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4386684180",
+      "title": "Area Sales Manager - (Pune)",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4408267070",
+      "title": "Assistant Manager- Sales- Pune",
+      "source_role": "devops",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4401070275",
+      "title": "Assistant Sales Manager",
+      "source_role": "fullstack",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4400391809",
+      "title": "Sales Account Manager",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4335981820",
+      "title": "Senior Sales Manager - Mortgage",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4393563459",
+      "title": "Senior Sales Manager - Mortgage",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4393566399",
+      "title": "Senior Sales Manager - Mortgage",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4373219711",
+      "title": "Area Sales Manager",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4403758585",
+      "title": "Assistant Mgr, Sales",
+      "source_role": "devops",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4402754398",
+      "title": "Closing Manager - Luxury Sales - Baner (Pune)",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4391565334",
+      "title": "Area Sales Manager - Pune",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4176659780",
+      "title": "AREA BUSINESS MANAGER (BDM FTL Sales)",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4392846158",
+      "title": "Assistant General Manager Business Development",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bbusiness development\\b"
+    },
+    {
+      "id": "linkedin_4398114306",
+      "title": "Business Development Manager",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bbusiness development\\b"
+    },
+    {
+      "id": "linkedin_4405312160",
+      "title": "Key Account Manager SME Corporate Vertical IQ/RI/03",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bkey account manager\\b"
+    },
+    {
+      "id": "linkedin_4395994655",
+      "title": "General manager - Operations (Aviation Fuel) - Bangalore - GO/JC/2848/2026",
+      "source_role": "non-tech",
+      "derived_role": "operations",
+      "matched_rule": "\\boperations?\\b"
+    },
+    {
+      "id": "linkedin_4387332380",
+      "title": "General Manager - Sales - GO/JC/2290/2026",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bsales\\b"
+    },
+    {
+      "id": "linkedin_4358974463",
+      "title": "Director - People Operations, Shared Services",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bpeople operations\\b"
+    },
+    {
+      "id": "linkedin_4281973232",
+      "title": "Chief Manager - Digital Marketing",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bdigital marketing\\b"
+    },
+    {
+      "id": "linkedin_4402899599",
+      "title": "Performance Marketing Manager",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4401947414",
+      "title": "Manager 2 - Ad Operations",
+      "source_role": "non-tech",
+      "derived_role": "operations",
+      "matched_rule": "\\boperations?\\b"
+    },
+    {
+      "id": "linkedin_4403639850",
+      "title": "Resident Marketing Executive",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4405026156",
+      "title": "Social Media Manager",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bsocial media\\b"
+    },
+    {
+      "id": "linkedin_4407422890",
+      "title": "Performance Marketing Executive",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4400141969",
+      "title": "Senior Manager - Social Media Marketing",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bsocial media\\b"
+    },
+    {
+      "id": "linkedin_4401611670",
+      "title": "Growth Marketing Manager",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4407864400",
+      "title": "Digital Marketing Manager",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bdigital marketing\\b"
+    },
+    {
+      "id": "linkedin_4401913525",
+      "title": "Social Media Marketing Manager",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bsocial media\\b"
+    },
+    {
+      "id": "linkedin_3953543068",
+      "title": "Digital Marketing Executive",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bdigital marketing\\b"
+    },
+    {
+      "id": "linkedin_4399839845",
+      "title": "Associate Manager - Performance Marketing",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4234624922",
+      "title": "Digital Marketing Trainer",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bdigital marketing\\b"
+    },
+    {
+      "id": "linkedin_4283015642",
+      "title": "Assistant Manager - Product Marketing",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4387910645",
+      "title": "Performance Marketing Executive",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4354415512",
+      "title": "Performance Marketing Manager",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4406969090",
+      "title": "Urgent Hiring for Digital Marketing Executive/Location-Mumbai/WFO/Salary-Upto 4lpa/Need 2+yrs of exp into Digital Marketing/Need Immediate joiners",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bdigital marketing\\b"
+    },
+    {
+      "id": "linkedin_4345391531",
+      "title": "Marketing - Sales Executive",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4345351504",
+      "title": "Marketing - Sales Executive",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4345341430",
+      "title": "Marketing - Sales Executive",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4392868031",
+      "title": "Business Development Manager",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\bbusiness development\\b"
+    },
+    {
+      "id": "linkedin_4399227678",
+      "title": "Junior Marketing",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4384967941",
+      "title": "Specialist, Marketing (Medical)",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bmarketing\\b"
+    },
+    {
+      "id": "linkedin_4407623224",
+      "title": "Digital Marketing Specialist",
+      "source_role": "non-tech",
+      "derived_role": "marketing",
+      "matched_rule": "\\bdigital marketing\\b"
+    },
+    {
+      "id": "linkedin_4395806811",
+      "title": "Account Manager",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\baccount manager\\b"
+    },
+    {
+      "id": "linkedin_4406448380",
+      "title": "Account Manager - Periodic Risk Review",
+      "source_role": "non-tech",
+      "derived_role": "sales",
+      "matched_rule": "\\baccount manager\\b"
+    },
+    {
+      "id": "linkedin_4398047748",
+      "title": "HR Manager",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhr\\b"
+    },
+    {
+      "id": "linkedin_4393065011",
+      "title": "Senior Human Resources Business Partner",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhuman resources?\\b"
+    },
+    {
+      "id": "linkedin_4400784221",
+      "title": "Human Resources Manager",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhuman resources?\\b"
+    },
+    {
+      "id": "linkedin_4406711268",
+      "title": "HR Manager &amp; Lead HR Business Partner",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhr\\b"
+    },
+    {
+      "id": "linkedin_4406667578",
+      "title": "HR Manager",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhr\\b"
+    },
+    {
+      "id": "linkedin_4213589636",
+      "title": "Senior HR Generalist - Americas",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhr\\b"
+    },
+    {
+      "id": "linkedin_4389446242",
+      "title": "Part Time HR Generalist",
+      "source_role": "fullstack",
+      "derived_role": "hr",
+      "matched_rule": "\\bhr\\b"
+    },
+    {
+      "id": "linkedin_4404471375",
+      "title": "Part time HR Generalist",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhr\\b"
+    },
+    {
+      "id": "linkedin_4403559658",
+      "title": "Manager of HR Operations &amp; Compliance",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhr\\b"
+    },
+    {
+      "id": "linkedin_4390334089",
+      "title": "Human Resources Business Partner",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhuman resources?\\b"
+    },
+    {
+      "id": "linkedin_4407586110",
+      "title": "Behavioral Health HR Manager",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhr\\b"
+    },
+    {
+      "id": "linkedin_4401304707",
+      "title": "Senior Manager Talent Acquisition",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\btalent acquisition\\b"
+    },
+    {
+      "id": "linkedin_4406429848",
+      "title": "Human Resources Manager",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhuman resources?\\b"
+    },
+    {
+      "id": "linkedin_4402788510",
+      "title": "Sr Talent Acquisition Manager",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\btalent acquisition\\b"
+    },
+    {
+      "id": "linkedin_4388250228",
+      "title": "HR Generalist",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhr\\b"
+    },
+    {
+      "id": "linkedin_4404085186",
+      "title": "HR Partner - Edison Works Engineering",
+      "source_role": "non-tech",
+      "derived_role": "hr",
+      "matched_rule": "\\bhr\\b"
+    },
+    {
+      "id": "linkedin_4405392349",
+      "title": "Learning &amp; Development Sr. Manager - Operations",
+      "source_role": "non-tech",
+      "derived_role": "operations",
+      "matched_rule": "\\boperations?\\b"
+    },
+    {
+      "id": "linkedin_4406456946",
+      "title": "Associate Director - Private Markets Operations",
+      "source_role": "non-tech",
+      "derived_role": "operations",
+      "matched_rule": "\\boperations?\\b"
+    },
+    {
+      "id": "linkedin_4380440857",
+      "title": "Director Finance",
+      "source_role": "non-tech",
+      "derived_role": "finance",
+      "matched_rule": "\\bfinance\\b"
+    },
+    {
+      "id": "linkedin_4379621296",
+      "title": "Software Engineer, Commerce Frontend",
+      "source_role": "frontend",
+      "derived_role": "fullstack",
+      "matched_rule": "\\bsoftware engineer\\b"
+    }
+  ],
+  "safety_rules": {
+    "source_role_preserved": true,
+    "source_role_blindly_overwritten": false,
+    "derived_role_confidence_recorded": true,
+    "experience_missing_values_invented": false,
+    "generated_labels_used": false,
+    "job_skills_preserved": true
+  }
+}

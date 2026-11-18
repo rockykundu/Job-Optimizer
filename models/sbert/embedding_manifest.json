@@ -1,0 +1,53 @@
+{
+  "model": {
+    "name": "all-MiniLM-L6-v2",
+    "local_model_directory": "C:\\Users\\rocky\\Documents\\websiter.bh\\Job-Optimizer\\models\\sbert\\model",
+    "device_used": "cpu",
+    "maximum_sequence_length": 256,
+    "chunk_token_limit": 220,
+    "chunk_token_overlap": 40,
+    "normalised_embeddings": true,
+    "aggregation": "mean of overlapping chunk embeddings, followed by L2 normalisation"
+  },
+  "candidates": {
+    "document_count": 640,
+    "chunk_count": 640,
+    "minimum_chunks_per_document": 1,
+    "maximum_chunks_per_document": 1,
+    "mean_chunks_per_document": 1,
+    "median_chunks_per_document": 1.0,
+    "embedding_dimension": 384
+  },
+  "jobs": {
+    "document_count": 2494,
+    "chunk_count": 10111,
+    "minimum_chunks_per_document": 1,
+    "maximum_chunks_per_document": 19,
+    "mean_chunks_per_document": 4.0541,
+    "median_chunks_per_document": 4.0,
+    "embedding_dimension": 384
+  },
+  "coverage": {
+    "profile_count": 640,
+    "main_enriched_job_count": 2468,
+    "total_embedded_job_count": 2494,
+    "gold_job_count": 86,
+    "gold_jobs_covered": 86,
+    "missing_gold_job_ids": []
+  },
+  "files": {
+    "candidate_embeddings": "candidate_embeddings.npy",
+    "job_embeddings": "job_embeddings.npy",
+    "candidate_ids": "candidate_ids.json",
+    "job_ids": "job_ids.json",
+    "local_model": "model/"
+  },
+  "safety_rules": {
+    "training_labels_used": false,
+    "validation_labels_used": false,
+    "test_labels_used": false,
+    "gold_labels_used_as_features": false,
+    "long_texts_truncated_without_chunking": false,
+    "model_saved_for_local_reuse": true
+  }
+}

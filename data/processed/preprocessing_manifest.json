@@ -1,0 +1,55 @@
+{
+  "raw_counts": {
+    "jobs": 2500,
+    "profiles": 640,
+    "phase3_pairs": 5000,
+    "generated_labels": 22465,
+    "gold_labels": 108
+  },
+  "processed_counts": {
+    "jobs": 2468,
+    "profiles": 640,
+    "training_labels": 21645,
+    "baseline_pairs": 4967,
+    "gold_evaluation": 108,
+    "benchmark_jobs": 25
+  },
+  "cleaning_actions": {
+    "identical_duplicate_jobs_removed": 29,
+    "short_description_jobs_removed": 3,
+    "short_description_jobs": [
+      {
+        "id": "linkedin_4324917907",
+        "title": "web3后台交易系统开发",
+        "description_length": 74
+      },
+      {
+        "id": "linkedin_4390891496",
+        "title": "Senior Manager",
+        "description_length": 96
+      },
+      {
+        "id": "linkedin_4407901095",
+        "title": "Chartered Accountant(Jaipur)",
+        "description_length": 1
+      }
+    ],
+    "generated_label_exclusions": {
+      "invalid_pair_id_format": 0,
+      "unknown_profile": 798,
+      "unknown_or_excluded_job": 22
+    },
+    "baseline_pairs_without_usable_labels": 33,
+    "gold_label_exclusions": {
+      "invalid_pair_id_format": 0,
+      "unknown_profile": 0,
+      "unknown_job": 0
+    }
+  },
+  "model_safety_rules": {
+    "matches_and_gaps_used_as_inputs": false,
+    "label_component_scores_used_as_inputs": false,
+    "baseline_skill_overlap_used_as_gnn_input": false,
+    "gold_labels_reserved_for_final_evaluation": true
+  }
+}

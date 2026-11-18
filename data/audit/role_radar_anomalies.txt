@@ -1,0 +1,263 @@
+ROLE RADAR — TARGETED ANOMALY DIAGNOSTIC
+================================================================================
+
+1. DUPLICATE JOB ANALYSIS
+Unique job IDs: 2,471
+Duplicate job-ID groups: 29
+Extra duplicated rows: 29
+  - linkedin_4337643834: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4337673695: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4338403103: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4339079300: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4345835030: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4366422916: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4375523422: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4380323278: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4380663889: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4382364621: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4383643765: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4384725125: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4385280427: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4386720302: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4387176058: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4394756229: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4395274556: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4397166999: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4397764397: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4398366094: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4402749745: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4403696823: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4404302967: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4405577156: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4406216770: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4406287765: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4407135998: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4407601685: rows=2, status=IDENTICAL, differing_fields=[]
+  - linkedin_4409033577: rows=2, status=IDENTICAL, differing_fields=[]
+Identical duplicate groups: 29
+Conflicting duplicate groups: 0
+
+2. GENERATED-LABEL FOREIGN KEYS
+Usable labels: 21,667
+Excluded labels: 798
+Distinct unknown profile IDs: 165
+Distinct unknown job IDs: 0
+Unknown profile IDs and label counts:
+  - profile_id=489: labels=18
+  - profile_id=488: labels=18
+  - profile_id=487: labels=17
+  - profile_id=387: labels=15
+  - profile_id=438: labels=15
+  - profile_id=440: labels=14
+  - profile_id=446: labels=14
+  - profile_id=416: labels=14
+  - profile_id=437: labels=13
+  - profile_id=394: labels=13
+  - profile_id=449: labels=12
+  - profile_id=490: labels=12
+  - profile_id=503: labels=12
+  - profile_id=504: labels=12
+  - profile_id=345: labels=12
+  - profile_id=379: labels=12
+  - profile_id=421: labels=12
+  - profile_id=432: labels=11
+  - profile_id=486: labels=11
+  - profile_id=374: labels=11
+  - profile_id=419: labels=11
+  - profile_id=343: labels=10
+  - profile_id=341: labels=10
+  - profile_id=337: labels=10
+  - profile_id=417: labels=10
+  - profile_id=436: labels=10
+  - profile_id=439: labels=10
+  - profile_id=339: labels=10
+  - profile_id=386: labels=9
+  - profile_id=340: labels=9
+  - profile_id=398: labels=9
+  - profile_id=390: labels=9
+  - profile_id=395: labels=9
+  - profile_id=509: labels=9
+  - profile_id=388: labels=8
+  - profile_id=434: labels=8
+  - profile_id=364: labels=8
+  - profile_id=338: labels=8
+  - profile_id=344: labels=8
+  - profile_id=389: labels=8
+  - profile_id=393: labels=8
+  - profile_id=450: labels=8
+  - profile_id=380: labels=8
+  - profile_id=336: labels=8
+  - profile_id=371: labels=7
+  - profile_id=378: labels=7
+  - profile_id=342: labels=7
+  - profile_id=365: labels=7
+  - profile_id=448: labels=7
+  - profile_id=425: labels=7
+  - profile_id=423: labels=7
+  - profile_id=510: labels=7
+  - profile_id=377: labels=7
+  - profile_id=372: labels=6
+  - profile_id=431: labels=6
+  - profile_id=502: labels=6
+  - profile_id=435: labels=6
+  - profile_id=391: labels=6
+  - profile_id=447: labels=6
+  - profile_id=507: labels=5
+  - profile_id=501: labels=5
+  - profile_id=362: labels=5
+  - profile_id=376: labels=5
+  - profile_id=506: labels=5
+  - profile_id=392: labels=5
+  - profile_id=422: labels=4
+  - profile_id=433: labels=4
+  - profile_id=361: labels=4
+  - profile_id=441: labels=4
+  - profile_id=420: labels=4
+  - profile_id=373: labels=4
+  - profile_id=505: labels=4
+  - profile_id=463: labels=4
+  - profile_id=418: labels=4
+  - profile_id=396: labels=4
+  - profile_id=363: labels=3
+  - profile_id=318: labels=3
+  - profile_id=471: labels=3
+  - profile_id=459: labels=3
+  - profile_id=484: labels=3
+  - profile_id=410: labels=3
+  - profile_id=331: labels=3
+  - profile_id=496: labels=3
+  - profile_id=508: labels=3
+  - profile_id=384: labels=3
+  - profile_id=408: labels=3
+  - profile_id=470: labels=3
+  - profile_id=405: labels=2
+  - profile_id=467: labels=2
+  - profile_id=407: labels=2
+  - profile_id=475: labels=2
+  - profile_id=474: labels=2
+  - profile_id=326: labels=2
+  - profile_id=476: labels=2
+  - profile_id=455: labels=2
+  - profile_id=461: labels=2
+  - profile_id=325: labels=2
+  - profile_id=335: labels=2
+  - profile_id=330: labels=2
+  - profile_id=385: labels=2
+  - profile_id=480: labels=2
+  - profile_id=478: labels=2
+  - profile_id=482: labels=2
+  - profile_id=469: labels=2
+  - profile_id=353: labels=2
+  - profile_id=357: labels=2
+  - profile_id=462: labels=2
+  - profile_id=491: labels=2
+  - profile_id=413: labels=2
+  - profile_id=493: labels=2
+  - profile_id=399: labels=2
+  - profile_id=424: labels=2
+  - profile_id=402: labels=2
+  - profile_id=314: labels=2
+  - profile_id=481: labels=2
+  - profile_id=350: labels=2
+  - profile_id=319: labels=2
+  - profile_id=334: labels=2
+  - profile_id=415: labels=2
+  - profile_id=465: labels=1
+  - profile_id=466: labels=1
+  - profile_id=500: labels=1
+  - profile_id=346: labels=1
+  - profile_id=409: labels=1
+  - profile_id=383: labels=1
+  - profile_id=329: labels=1
+  - profile_id=355: labels=1
+  - profile_id=381: labels=1
+  - profile_id=492: labels=1
+  - profile_id=403: labels=1
+  - profile_id=452: labels=1
+  - profile_id=324: labels=1
+  - profile_id=382: labels=1
+  - profile_id=427: labels=1
+  - profile_id=494: labels=1
+  - profile_id=328: labels=1
+  - profile_id=322: labels=1
+  - profile_id=368: labels=1
+  - profile_id=327: labels=1
+  - profile_id=443: labels=1
+  - profile_id=414: labels=1
+  - profile_id=430: labels=1
+  - profile_id=453: labels=1
+  - profile_id=406: labels=1
+  - profile_id=397: labels=1
+  - profile_id=375: labels=1
+  - profile_id=442: labels=1
+  - profile_id=367: labels=1
+  - profile_id=458: labels=1
+  - profile_id=320: labels=1
+  - profile_id=348: labels=1
+  - profile_id=356: labels=1
+  - profile_id=460: labels=1
+  - profile_id=454: labels=1
+  - profile_id=428: labels=1
+  - profile_id=323: labels=1
+  - profile_id=316: labels=1
+  - profile_id=468: labels=1
+  - profile_id=313: labels=1
+  - profile_id=312: labels=1
+  - profile_id=360: labels=1
+  - profile_id=457: labels=1
+  - profile_id=473: labels=1
+  - profile_id=352: labels=1
+  - profile_id=401: labels=1
+
+3. USABLE LABEL COVERAGE
+Profiles represented: 621/640
+Jobs represented: 2,127/2,471
+
+4. PHASE 3 PAIRS WITHOUT LABELS
+Missing-label pairs: 25
+  - 101_linkedin_4367948022
+  - 113_linkedin_4407008767
+  - 134_linkedin_4373617053
+  - 152_linkedin_4403911168
+  - 157_linkedin_4400518203
+  - 176_linkedin_4408265376
+  - 179_linkedin_4401400375
+  - 195_linkedin_4403766798
+  - 223_linkedin_4386983058
+  - 228_linkedin_4406379621
+  - 248_linkedin_4405236154
+  - 264_linkedin_4403972210
+  - 282_linkedin_4400515080
+  - 287_linkedin_4407900505
+  - 290_linkedin_4359578079
+  - 46_linkedin_4407860783
+  - 542_linkedin_4393566399
+  - 583_linkedin_4407191616
+  - 674_linkedin_4407425120
+  - 760_linkedin_4402814744
+  - 804_linkedin_4359578079
+  - 822_linkedin_4389712094
+  - 831_linkedin_4400212890
+  - 836_linkedin_4311992205
+  - 838_linkedin_4344958753
+
+5. LABELLED PHASE 3 PAIR TYPES
+  - hard_negative: 1,992
+  - positive: 1,494
+  - negative: 1,489
+
+6. GOLD-LABEL ANOMALIES
+Unknown-profile gold labels: 0
+Unknown-job gold labels: 2
+  - 21_job_20
+  - 111_job_14
+
+7. VERY SHORT JOB DESCRIPTIONS
+Descriptions under 100 characters: 3
+  - linkedin_4324917907: characters=74, title=web3后台交易系统开发
+  - linkedin_4390891496: characters=96, title=Senior Manager
+  - linkedin_4407901095: characters=1, title=Chartered Accountant(Jaipur)
+
+8. PROFILE DATA ORIGINS
+  - not_provided: 438
+  - public-dataset-screening-v1: 202

@@ -1,0 +1,349 @@
+{
+  "model": {
+    "name": "all-MiniLM-L6-v2",
+    "baseline": "Chunked structured-text SBERT",
+    "similarity": "Cosine similarity of normalised candidate and job embeddings",
+    "calibration": "Separate affine calibrators fitted on training labels only"
+  },
+  "calibrators": {
+    "skills_target": {
+      "slope": 68.89652125651422,
+      "intercept": 28.83821163829038,
+      "fitted_pairs": 10626,
+      "training_input_mean": 0.49714237097745423,
+      "training_target_mean": 63.08959156785244
+    },
+    "composite_target": {
+      "slope": 38.39270780124961,
+      "intercept": 50.37185623915759,
+      "fitted_pairs": 10626,
+      "training_input_mean": 0.49714237097745423,
+      "training_target_mean": 69.45849802371542
+    }
+  },
+  "splits": {
+    "train": {
+      "pair_count": 10626,
+      "cosine_distribution": {
+        "count": 10626,
+        "minimum": 0.106333,
+        "maximum": 0.816656,
+        "mean": 0.497142,
+        "median": 0.492205
+      },
+      "skills_target": {
+        "training_mean_baseline": {
+          "evaluated_pairs": 10626,
+          "mae": 10.9245,
+          "rmse": 13.001,
+          "pearson": null,
+          "spearman": null
+        },
+        "sbert_calibrated_regression": {
+          "evaluated_pairs": 10626,
+          "mae": 8.3496,
+          "rmse": 10.5386,
+          "pearson": 0.5856,
+          "spearman": 0.5805
+        },
+        "candidate_centred_ndcg": {
+          "ndcg_at_5": {
+            "candidate_count": 352,
+            "mean": 0.7439
+          },
+          "ndcg_at_10": {
+            "candidate_count": 352,
+            "mean": 0.7701
+          }
+        },
+        "pairwise_ranking_accuracy": {
+          "candidate_count": 352,
+          "pair_comparisons": 236980,
+          "accuracy": 0.723,
+          "tie_handling": "Prediction ties receive 0.5 credit"
+        }
+      },
+      "composite_target": {
+        "training_mean_baseline": {
+          "evaluated_pairs": 10626,
+          "mae": 6.4355,
+          "rmse": 7.7637,
+          "pearson": null,
+          "spearman": null
+        },
+        "sbert_calibrated_regression": {
+          "evaluated_pairs": 10626,
+          "mae": 5.1832,
+          "rmse": 6.502,
+          "pearson": 0.5465,
+          "spearman": 0.5327
+        },
+        "candidate_centred_ndcg": {
+          "ndcg_at_5": {
+            "candidate_count": 360,
+            "mean": 0.7494
+          },
+          "ndcg_at_10": {
+            "candidate_count": 360,
+            "mean": 0.7793
+          }
+        },
+        "pairwise_ranking_accuracy": {
+          "candidate_count": 360,
+          "pair_comparisons": 276900,
+          "accuracy": 0.6747,
+          "tie_handling": "Prediction ties receive 0.5 credit"
+        }
+      },
+      "unavailable_pair_count": 0,
+      "unavailable_pair_ids": []
+    },
+    "validation": {
+      "pair_count": 1808,
+      "cosine_distribution": {
+        "count": 1808,
+        "minimum": 0.078592,
+        "maximum": 0.805354,
+        "mean": 0.486583,
+        "median": 0.484685
+      },
+      "skills_target": {
+        "training_mean_baseline": {
+          "evaluated_pairs": 1808,
+          "mae": 10.6955,
+          "rmse": 12.6984,
+          "pearson": null,
+          "spearman": null
+        },
+        "sbert_calibrated_regression": {
+          "evaluated_pairs": 1808,
+          "mae": 8.3117,
+          "rmse": 10.4951,
+          "pearson": 0.5639,
+          "spearman": 0.5491
+        },
+        "candidate_centred_ndcg": {
+          "ndcg_at_5": {
+            "candidate_count": 74,
+            "mean": 0.751
+          },
+          "ndcg_at_10": {
+            "candidate_count": 74,
+            "mean": 0.7895
+          }
+        },
+        "pairwise_ranking_accuracy": {
+          "candidate_count": 74,
+          "pair_comparisons": 27561,
+          "accuracy": 0.7035,
+          "tie_handling": "Prediction ties receive 0.5 credit"
+        }
+      },
+      "composite_target": {
+        "training_mean_baseline": {
+          "evaluated_pairs": 1808,
+          "mae": 6.2654,
+          "rmse": 7.5964,
+          "pearson": null,
+          "spearman": null
+        },
+        "sbert_calibrated_regression": {
+          "evaluated_pairs": 1808,
+          "mae": 5.2264,
+          "rmse": 6.583,
+          "pearson": 0.5029,
+          "spearman": 0.4945
+        },
+        "candidate_centred_ndcg": {
+          "ndcg_at_5": {
+            "candidate_count": 75,
+            "mean": 0.7469
+          },
+          "ndcg_at_10": {
+            "candidate_count": 75,
+            "mean": 0.7863
+          }
+        },
+        "pairwise_ranking_accuracy": {
+          "candidate_count": 75,
+          "pair_comparisons": 31463,
+          "accuracy": 0.6692,
+          "tie_handling": "Prediction ties receive 0.5 credit"
+        }
+      },
+      "unavailable_pair_count": 0,
+      "unavailable_pair_ids": []
+    },
+    "test": {
+      "pair_count": 1996,
+      "cosine_distribution": {
+        "count": 1996,
+        "minimum": 0.08546,
+        "maximum": 0.796069,
+        "mean": 0.485425,
+        "median": 0.478283
+      },
+      "skills_target": {
+        "training_mean_baseline": {
+          "evaluated_pairs": 1996,
+          "mae": 10.855,
+          "rmse": 12.7938,
+          "pearson": null,
+          "spearman": null
+        },
+        "sbert_calibrated_regression": {
+          "evaluated_pairs": 1996,
+          "mae": 8.301,
+          "rmse": 10.509,
+          "pearson": 0.5683,
+          "spearman": 0.5501
+        },
+        "candidate_centred_ndcg": {
+          "ndcg_at_5": {
+            "candidate_count": 79,
+            "mean": 0.7466
+          },
+          "ndcg_at_10": {
+            "candidate_count": 79,
+            "mean": 0.7767
+          }
+        },
+        "pairwise_ranking_accuracy": {
+          "candidate_count": 79,
+          "pair_comparisons": 35285,
+          "accuracy": 0.7119,
+          "tie_handling": "Prediction ties receive 0.5 credit"
+        }
+      },
+      "composite_target": {
+        "training_mean_baseline": {
+          "evaluated_pairs": 1996,
+          "mae": 6.3642,
+          "rmse": 7.6146,
+          "pearson": null,
+          "spearman": null
+        },
+        "sbert_calibrated_regression": {
+          "evaluated_pairs": 1996,
+          "mae": 5.1281,
+          "rmse": 6.4154,
+          "pearson": 0.5396,
+          "spearman": 0.531
+        },
+        "candidate_centred_ndcg": {
+          "ndcg_at_5": {
+            "candidate_count": 78,
+            "mean": 0.7428
+          },
+          "ndcg_at_10": {
+            "candidate_count": 78,
+            "mean": 0.7751
+          }
+        },
+        "pairwise_ranking_accuracy": {
+          "candidate_count": 78,
+          "pair_comparisons": 42020,
+          "accuracy": 0.6725,
+          "tie_handling": "Prediction ties receive 0.5 credit"
+        }
+      },
+      "unavailable_pair_count": 0,
+      "unavailable_pair_ids": []
+    },
+    "gold": {
+      "pair_count": 108,
+      "cosine_distribution": {
+        "count": 108,
+        "minimum": 0.261841,
+        "maximum": 0.755548,
+        "mean": 0.546665,
+        "median": 0.550497
+      },
+      "skills_target": {
+        "training_mean_baseline": {
+          "evaluated_pairs": 108,
+          "mae": 17.1107,
+          "rmse": 20.4374,
+          "pearson": null,
+          "spearman": null
+        },
+        "sbert_calibrated_regression": {
+          "evaluated_pairs": 108,
+          "mae": 12.1774,
+          "rmse": 14.9721,
+          "pearson": 0.7234,
+          "spearman": 0.7354
+        },
+        "candidate_centred_ndcg": {
+          "ndcg_at_5": {
+            "candidate_count": 20,
+            "mean": 0.8916
+          },
+          "ndcg_at_10": {
+            "candidate_count": 20,
+            "mean": 0.8916
+          }
+        },
+        "pairwise_ranking_accuracy": {
+          "candidate_count": 20,
+          "pair_comparisons": 34,
+          "accuracy": 0.7353,
+          "tie_handling": "Prediction ties receive 0.5 credit"
+        }
+      },
+      "composite_target": {
+        "training_mean_baseline": {
+          "evaluated_pairs": 108,
+          "mae": 9.7283,
+          "rmse": 12.2006,
+          "pearson": null,
+          "spearman": null
+        },
+        "sbert_calibrated_regression": {
+          "evaluated_pairs": 108,
+          "mae": 7.4394,
+          "rmse": 9.3475,
+          "pearson": 0.6712,
+          "spearman": 0.6797
+        },
+        "candidate_centred_ndcg": {
+          "ndcg_at_5": {
+            "candidate_count": 19,
+            "mean": 0.8476
+          },
+          "ndcg_at_10": {
+            "candidate_count": 19,
+            "mean": 0.8476
+          }
+        },
+        "pairwise_ranking_accuracy": {
+          "candidate_count": 19,
+          "pair_comparisons": 36,
+          "accuracy": 0.6667,
+          "tie_handling": "Prediction ties receive 0.5 credit"
+        }
+      },
+      "unavailable_pair_count": 0,
+      "unavailable_pair_ids": []
+    }
+  },
+  "embedding_shapes": {
+    "candidates": [
+      640,
+      384
+    ],
+    "jobs": [
+      2494,
+      384
+    ]
+  },
+  "safety_rules": {
+    "training_labels_used_for_calibration_only": true,
+    "validation_used_for_calibration": false,
+    "test_used_for_calibration": false,
+    "gold_used_for_calibration": false,
+    "long_documents_chunked": true,
+    "artificial_fixed_offset": false,
+    "gold_pairs_missing_embeddings": 0
+  }
+}

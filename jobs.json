@@ -1,0 +1,77 @@
+[
+    {
+        "title": "Software Engineer",
+        "company": "Tech Solutions India",
+        "location": "Bangalore, India",
+        "skills": [
+            "Python",
+            "Java",
+            "SQL",
+            "Git",
+            "REST API",
+            "Data Structures",
+            "Algorithms"
+        ],
+        "description": "We are looking for a Software Engineer with strong programming skills in Python or Java. The candidate should understand data structures, algorithms, SQL, REST APIs and Git. Experience with software development projects is preferred."
+    },
+    {
+        "title": "Python Developer",
+        "company": "AI Technologies",
+        "location": "Hyderabad, India",
+        "skills": [
+            "Python",
+            "Django",
+            "Flask",
+            "REST API",
+            "SQL",
+            "Git",
+            "Machine Learning"
+        ],
+        "description": "Looking for a Python Developer with knowledge of Python, Flask or Django, REST APIs and SQL. Knowledge of machine learning and Git is an advantage."
+    },
+    {
+        "title": "Frontend Developer",
+        "company": "WebWorks",
+        "location": "Kolkata, India",
+        "skills": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "React",
+            "Git",
+            "Responsive Design"
+        ],
+        "description": "Frontend Developer required with strong knowledge of HTML, CSS and JavaScript. Experience with React, responsive web design and Git is preferred."
+    },
+    {
+        "title": "Data Analyst",
+        "company": "Data Insights Pvt Ltd",
+        "location": "Pune, India",
+        "skills": [
+            "Python",
+            "SQL",
+            "Pandas",
+            "NumPy",
+            "Excel",
+            "Power BI",
+            "Data Visualization"
+        ],
+        "description": "We are looking for a Data Analyst who can work with Python, SQL, Pandas and NumPy. Knowledge of Excel, Power BI and data visualization is required."
+    },
+    {
+        "title": "Full Stack Developer",
+        "company": "Digital Labs",
+        "location": "Mumbai, India",
+        "skills": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "React",
+            "Node.js",
+            "MongoDB",
+            "REST API",
+            "Git"
+        ],
+        "description": "Full Stack Developer responsible for developing modern web applications using React and Node.js. Knowledge of MongoDB, REST APIs, JavaScript, HTML, CSS and Git is required."
+    }
+]

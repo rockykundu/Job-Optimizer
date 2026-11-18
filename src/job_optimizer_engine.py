@@ -1,0 +1,600 @@
+from __future__ import annotations
+
+import html
+import json
+import math
+import re
+from pathlib import Path
+from typing import Any, Iterable
+
+import numpy as np
+import torch
+from sentence_transformers import SentenceTransformer
+
+from scripts.build_sbert_embeddings import chunk_text
+from scripts.extract_job_skills import (
+    build_skill_dictionary,
+    extract_skills as extract_canonical_skills,
+)
+from scripts.train_heterogeneous_gnn import HeterogeneousGNN
+
+
+class JobOptimizerEngine:
+    """Loads the validated semantic-graph model and scores cold-start resumes."""
+
+    def __init__(self, project_root: str | Path | None = None) -> None:
+        self.project_root = (
+            Path(project_root).resolve()
+            if project_root is not None
+            else Path(__file__).resolve().parents[1]
+        )
+        self.graph_dir = self.project_root / "data" / "processed" / "graph"
+        self.processed_dir = self.project_root / "data" / "processed"
+        self.sbert_dir = self.project_root / "models" / "sbert" / "model"
+        self.checkpoint_path = (
+            self.project_root / "models" / "gnn" / "heterogeneous_gnn.pt"
+        )
+        self.config_path = self.project_root / "models" / "final" / "model_config.json"
+        self.ranking_policy_path = (
+            self.project_root / "models" / "final" / "ranking_policy.json"
+        )
+        self.device = torch.device("cpu")
+        self._sbert: SentenceTransformer | None = None
+
+        self._validate_required_files()
+        self.config = self._load_json(self.config_path)
+        self.ranking_policy = self._load_production_ranking_policy()
+        self.candidate_ids = [
+            str(value) for value in self._load_json(self.graph_dir / "candidate_ids.json")
+        ]
+        self.job_ids = [
+            str(value) for value in self._load_json(self.graph_dir / "job_ids.json")
+        ]
+        self.skill_ids = [
+            str(value) for value in self._load_json(self.graph_dir / "skill_ids.json")
+        ]
+        self.job_index = {job_id: index for index, job_id in enumerate(self.job_ids)}
+        self.skill_index = {
+            skill.casefold(): index for index, skill in enumerate(self.skill_ids)
+        }
+        if len(self.job_index) != len(self.job_ids):
+            raise ValueError("Duplicate job IDs in graph/job_ids.json")
+        if len(self.skill_index) != len(self.skill_ids):
+            raise ValueError("Duplicate case-insensitive skills in graph/skill_ids.json")
+
+        self.graph = self._load_graph()
+        self.model, self.target_mean, self.target_standard_deviation = (
+            self._load_gnn_checkpoint()
+        )
+        self.jobs_by_id = self._load_main_jobs()
+        self.main_job_ids = [
+            job_id for job_id in self.job_ids if job_id in self.jobs_by_id
+        ]
+        self.main_job_indices = torch.as_tensor(
+            [self.job_index[job_id] for job_id in self.main_job_ids], dtype=torch.long
+        )
+        self._prepare_skill_extractor()
+
+    @staticmethod
+    def _load_json(path: Path) -> Any:
+        with path.open("r", encoding="utf-8-sig") as handle:
+            return json.load(handle)
+
+    def _validate_required_files(self) -> None:
+        required = [
+            self.graph_dir / "node_features.npz",
+            self.graph_dir / "graph_edges.npz",
+            self.graph_dir / "candidate_splits.npz",
+            self.graph_dir / "candidate_ids.json",
+            self.graph_dir / "job_ids.json",
+            self.graph_dir / "skill_ids.json",
+            self.processed_dir / "jobs_features_enriched.json",
+            self.processed_dir / "skill_catalog.json",
+            self.processed_dir / "skill_aliases.json",
+            self.checkpoint_path,
+            self.config_path,
+            self.sbert_dir / "config.json",
+        ]
+        missing = [str(path) for path in required if not path.exists()]
+        if missing:
+            raise FileNotFoundError(
+                "Production inference cannot start because these files are missing:\n"
+                + "\n".join(missing)
+            )
+
+    def _load_production_ranking_policy(self) -> dict[str, Any] | None:
+        if not self.ranking_policy_path.exists():
+            return None
+        policy = self._load_json(self.ranking_policy_path)
+        if policy.get("status") != "production":
+            raise ValueError(
+                "models/final/ranking_policy.json is present but is not marked production"
+            )
+        if policy.get("policy_name") != "validation_selected_gnn_sbert_hybrid":
+            raise ValueError("Unrecognised production ranking policy")
+        # Validate the policy structure and weights without requiring predictions.
+        self._ranking_scores(
+            np.zeros((1, 2), dtype=np.float32),
+            np.zeros(1, dtype=np.float32),
+            policy,
+        )
+        return policy
+
+    def _load_graph(self) -> dict[str, torch.Tensor]:
+        node_file = np.load(self.graph_dir / "node_features.npz")
+        edge_file = np.load(self.graph_dir / "graph_edges.npz")
+        split_codes = np.load(self.graph_dir / "candidate_splits.npz")["split_code"]
+
+        candidate_x = torch.as_tensor(node_file["candidate"], dtype=torch.float32)
+        job_x = torch.as_tensor(node_file["job"], dtype=torch.float32)
+        skill_x = torch.as_tensor(node_file["skill"], dtype=torch.float32)
+        candidate_skill_index = torch.as_tensor(
+            edge_file["candidate_skill_edge_index"], dtype=torch.long
+        )
+        job_skill_index = torch.as_tensor(
+            edge_file["job_skill_edge_index"], dtype=torch.long
+        )
+
+        if candidate_x.shape[0] != len(self.candidate_ids):
+            raise ValueError("Candidate node features and IDs have different lengths")
+        if job_x.shape[0] != len(self.job_ids):
+            raise ValueError("Job node features and IDs have different lengths")
+        if skill_x.shape[0] != len(self.skill_ids):
+            raise ValueError("Skill node features and IDs have different lengths")
+        if candidate_x.shape[1] != job_x.shape[1] or job_x.shape[1] != skill_x.shape[1]:
+            raise ValueError("Candidate, job and skill feature dimensions differ")
+
+        return {
+            "candidate_x": candidate_x,
+            "job_x": job_x,
+            "skill_x": skill_x,
+            "candidate_skill_index": candidate_skill_index,
+            "candidate_skill_weight": torch.as_tensor(
+                edge_file["candidate_skill_weight"], dtype=torch.float32
+            ),
+            "job_skill_index": job_skill_index,
+            "job_skill_weight": torch.as_tensor(
+                edge_file["job_skill_weight"], dtype=torch.float32
+            ),
+            # Only code 0 candidates may update shared skill nodes, exactly as training.
+            "train_candidate_mask": torch.as_tensor(split_codes == 0, dtype=torch.bool),
+        }
+
+    def _load_gnn_checkpoint(
+        self,
+    ) -> tuple[HeterogeneousGNN, torch.Tensor, torch.Tensor]:
+        try:
+            checkpoint = torch.load(
+                self.checkpoint_path, map_location=self.device, weights_only=True
+            )
+        except TypeError:
+            checkpoint = torch.load(self.checkpoint_path, map_location=self.device)
+
+        input_dim = int(checkpoint["input_dim"])
+        if input_dim != int(self.graph["candidate_x"].shape[1]):
+            raise ValueError("Checkpoint input dimension does not match graph features")
+        model = HeterogeneousGNN(
+            input_dim=input_dim,
+            hidden_dim=int(checkpoint["hidden_dim"]),
+            dropout=float(checkpoint["dropout"]),
+        ).to(self.device)
+        model.load_state_dict(checkpoint["model_state_dict"], strict=True)
+        model.eval()
+        target_mean = torch.as_tensor(checkpoint["target_mean"], dtype=torch.float32)
+        target_standard_deviation = torch.as_tensor(
+            checkpoint["target_standard_deviation"], dtype=torch.float32
+        )
+        if target_mean.shape != (2,) or target_standard_deviation.shape != (2,):
+            raise ValueError("Checkpoint target scaling metadata is invalid")
+        return model, target_mean, target_standard_deviation
+
+    def _load_main_jobs(self) -> dict[str, dict[str, Any]]:
+        rows = self._load_json(self.processed_dir / "jobs_features_enriched.json")
+        if not isinstance(rows, list):
+            raise TypeError("jobs_features_enriched.json must contain a list")
+        result = {str(row["id"]): row for row in rows}
+        if len(result) != len(rows):
+            raise ValueError("Duplicate IDs in jobs_features_enriched.json")
+        missing_embeddings = sorted(set(result) - set(self.job_index))
+        if missing_embeddings:
+            raise ValueError(
+                f"{len(missing_embeddings)} main jobs have no graph embedding; "
+                f"sample={missing_embeddings[:10]}"
+            )
+        return result
+
+    def _prepare_skill_extractor(self) -> None:
+        catalog = self._load_json(self.processed_dir / "skill_catalog.json")
+        aliases = self._load_json(self.processed_dir / "skill_aliases.json")
+        if not isinstance(catalog, list):
+            raise TypeError("skill_catalog.json must contain a list")
+
+        catalog_names = {
+            str(entry["canonical_name"]).casefold()
+            for entry in catalog
+            if isinstance(entry, dict) and entry.get("canonical_name")
+        }
+        augmented_catalog = list(catalog)
+        for skill in self.skill_ids:
+            if skill.casefold() not in catalog_names:
+                augmented_catalog.append(
+                    {"canonical_name": skill, "raw_variants": []}
+                )
+
+        (
+            self.phrase_to_canonical,
+            self.combined_skill_pattern,
+            self.canonical_lookup,
+            conflicts,
+        ) = build_skill_dictionary(augmented_catalog, aliases)
+        if conflicts:
+            raise ValueError(
+                f"Skill dictionary contains {len(conflicts)} conflicting aliases"
+            )
+
+    @property
+    def sbert(self) -> SentenceTransformer:
+        if self._sbert is None:
+            self._sbert = SentenceTransformer(str(self.sbert_dir), device="cpu")
+        return self._sbert
+
+    def extract_resume_skills(self, resume_text: str) -> list[str]:
+        detected = extract_canonical_skills(
+            resume_text,
+            self.phrase_to_canonical,
+            self.combined_skill_pattern,
+            self.canonical_lookup,
+        )
+        return sorted(
+            (skill for skill in detected if skill.casefold() in self.skill_index),
+            key=str.casefold,
+        )
+
+    @staticmethod
+    def _clean_display_text(value: Any, fallback: str) -> str:
+        text = str(value or fallback)
+        for _ in range(3):
+            decoded = html.unescape(text)
+            if decoded == text:
+                break
+            text = decoded
+        return re.sub(r"\s+", " ", text).strip() or fallback
+
+    @staticmethod
+    def _clean_description(value: Any) -> str:
+        text = str(value or "")
+        for _ in range(3):
+            decoded = html.unescape(text)
+            if decoded == text:
+                break
+            text = decoded
+        return text.strip()
+
+    @staticmethod
+    def _ranking_scores(
+        raw_predictions: np.ndarray,
+        feature_cosine_similarities: np.ndarray,
+        ranking_policy: dict[str, Any] | None,
+    ) -> tuple[np.ndarray, np.ndarray, str]:
+        gnn_composite = raw_predictions[:, 1].astype(np.float64)
+        if ranking_policy is None:
+            return (
+                gnn_composite,
+                np.full(len(gnn_composite), np.nan, dtype=np.float64),
+                "gnn_only",
+            )
+
+        weights = ranking_policy.get("weights", {})
+        gnn_weight = float(weights.get("gnn", 0.0))
+        sbert_weight = float(weights.get("sbert", 0.0))
+        if (
+            gnn_weight < 0
+            or sbert_weight < 0
+            or not math.isclose(gnn_weight + sbert_weight, 1.0, abs_tol=1e-8)
+        ):
+            raise ValueError("Ranking-policy weights must be non-negative and sum to 1")
+
+        calibrator = ranking_policy.get("sbert_composite_calibrator", {})
+        slope = float(calibrator["slope"])
+        intercept = float(calibrator["intercept"])
+        sbert_composite = np.clip(
+            slope * feature_cosine_similarities.astype(np.float64) + intercept,
+            0.0,
+            100.0,
+        )
+        hybrid = gnn_weight * gnn_composite + sbert_weight * sbert_composite
+        return hybrid, sbert_composite, str(
+            ranking_policy.get("policy_name", "validation_selected_hybrid")
+        )
+
+    def _job_feature_cosine_similarities(
+        self, candidate_embedding: torch.Tensor
+    ) -> np.ndarray:
+        candidate = candidate_embedding.squeeze(0).cpu().numpy().astype(np.float32)
+        jobs = (
+            self.graph["job_x"][self.main_job_indices]
+            .cpu()
+            .numpy()
+            .astype(np.float32)
+        )
+        candidate_norm = float(np.linalg.norm(candidate))
+        job_norms = np.linalg.norm(jobs, axis=1)
+        denominator = job_norms * candidate_norm
+        similarities = np.divide(
+            jobs @ candidate,
+            denominator,
+            out=np.zeros(len(jobs), dtype=np.float32),
+            where=denominator > 0,
+        )
+        return np.clip(similarities, -1.0, 1.0)
+
+    def _embed_resume(self, resume_text: str, skills: Iterable[str]) -> torch.Tensor:
+        cleaned = re.sub(r"\s+", " ", resume_text).strip()
+        skill_text = ", ".join(skills)
+        structured_text = (
+            f"Detected canonical skills: {skill_text}\n"
+            f"Candidate resume content: {cleaned}"
+        )
+        chunks = chunk_text(structured_text, self.sbert.tokenizer)
+        chunk_embeddings = self.sbert.encode(
+            chunks,
+            batch_size=32,
+            show_progress_bar=False,
+            convert_to_numpy=True,
+            normalize_embeddings=True,
+        ).astype(np.float32)
+        document_embedding = chunk_embeddings.mean(axis=0)
+        norm = float(np.linalg.norm(document_embedding))
+        if not math.isfinite(norm) or norm == 0:
+            raise ValueError("Resume embedding has an invalid norm")
+        document_embedding /= norm
+        return torch.as_tensor(document_embedding, dtype=torch.float32).unsqueeze(0)
+
+    def _graph_with_cold_start_candidate(
+        self, candidate_embedding: torch.Tensor, skills: list[str]
+    ) -> tuple[dict[str, torch.Tensor], int]:
+        new_candidate_index = int(self.graph["candidate_x"].shape[0])
+        candidate_x = torch.cat(
+            [self.graph["candidate_x"], candidate_embedding], dim=0
+        )
+
+        skill_indices = [self.skill_index[skill.casefold()] for skill in skills]
+        if skill_indices:
+            new_edges = torch.stack(
+                [
+                    torch.full(
+                        (len(skill_indices),), new_candidate_index, dtype=torch.long
+                    ),
+                    torch.as_tensor(skill_indices, dtype=torch.long),
+                ]
+            )
+            candidate_skill_index = torch.cat(
+                [self.graph["candidate_skill_index"], new_edges], dim=1
+            )
+            candidate_skill_weight = torch.cat(
+                [
+                    self.graph["candidate_skill_weight"],
+                    torch.ones(len(skill_indices), dtype=torch.float32),
+                ]
+            )
+        else:
+            candidate_skill_index = self.graph["candidate_skill_index"]
+            candidate_skill_weight = self.graph["candidate_skill_weight"]
+
+        # False is essential: a new candidate may receive skill messages but
+        # must never update shared skill nodes learned from training candidates.
+        train_candidate_mask = torch.cat(
+            [self.graph["train_candidate_mask"], torch.tensor([False])]
+        )
+        inference_graph = {
+            **self.graph,
+            "candidate_x": candidate_x,
+            "candidate_skill_index": candidate_skill_index,
+            "candidate_skill_weight": candidate_skill_weight,
+            "train_candidate_mask": train_candidate_mask,
+        }
+        return inference_graph, new_candidate_index
+
+    def _unstandardise(self, prediction: torch.Tensor) -> torch.Tensor:
+        return prediction * self.target_standard_deviation + self.target_mean
+
+    @torch.inference_mode()
+    def score_existing_pairs(
+        self, pairs: Iterable[tuple[str, str]]
+    ) -> list[dict[str, float | str]]:
+        pair_list = [(str(candidate), str(job)) for candidate, job in pairs]
+        candidate_index = {value: index for index, value in enumerate(self.candidate_ids)}
+        missing_candidates = sorted(
+            {candidate for candidate, _ in pair_list if candidate not in candidate_index}
+        )
+        missing_jobs = sorted({job for _, job in pair_list if job not in self.job_index})
+        if missing_candidates or missing_jobs:
+            raise KeyError(
+                f"Unknown graph IDs: candidates={missing_candidates[:10]}, jobs={missing_jobs[:10]}"
+            )
+        candidate_tensor = torch.as_tensor(
+            [candidate_index[candidate] for candidate, _ in pair_list], dtype=torch.long
+        )
+        job_tensor = torch.as_tensor(
+            [self.job_index[job] for _, job in pair_list], dtype=torch.long
+        )
+        standardised = self.model(self.graph, candidate_tensor, job_tensor)
+        prediction = self._unstandardise(standardised).cpu().numpy()
+        return [
+            {
+                "candidate_id": candidate,
+                "job_id": job,
+                "skills_score": float(prediction[index, 0]),
+                "composite_score": float(prediction[index, 1]),
+            }
+            for index, (candidate, job) in enumerate(pair_list)
+        ]
+
+    @torch.inference_mode()
+    def rank_resume(
+        self,
+        resume_text: str,
+        top_k: int = 10,
+        ranking_policy: dict[str, Any] | None = None,
+        use_production_policy: bool = True,
+    ) -> dict[str, Any]:
+        cleaned = re.sub(r"\s+", " ", resume_text).strip()
+        if len(cleaned) < 50:
+            raise ValueError("Resume text is too short; at least 50 characters are required")
+        if not 1 <= int(top_k) <= 100:
+            raise ValueError("top_k must be between 1 and 100")
+
+        skills = self.extract_resume_skills(cleaned)
+        candidate_embedding = self._embed_resume(cleaned, skills)
+        inference_graph, candidate_index = self._graph_with_cold_start_candidate(
+            candidate_embedding, skills
+        )
+        candidate_tensor = torch.full(
+            (len(self.main_job_indices),), candidate_index, dtype=torch.long
+        )
+        standardised = self.model(
+            inference_graph, candidate_tensor, self.main_job_indices
+        )
+        raw_predictions = self._unstandardise(standardised).cpu().numpy()
+        feature_cosine_similarities = self._job_feature_cosine_similarities(
+            candidate_embedding
+        )
+        selected_policy = (
+            ranking_policy
+            if ranking_policy is not None
+            else self.ranking_policy if use_production_policy else None
+        )
+        ranking_scores, sbert_composite_scores, policy_name = self._ranking_scores(
+            raw_predictions,
+            feature_cosine_similarities,
+            selected_policy,
+        )
+        order = np.argsort(-ranking_scores, kind="mergesort")[: int(top_k)]
+        candidate_skill_set = {skill.casefold() for skill in skills}
+
+        matches: list[dict[str, Any]] = []
+        for rank, position in enumerate(order.tolist(), start=1):
+            job_id = self.main_job_ids[position]
+            job = self.jobs_by_id[job_id]
+            required = list(job.get("skills_required", []))
+            preferred = list(job.get("skills_preferred", []))
+            mentioned = list(job.get("skills_mentioned", []))
+
+            def matched(values: Iterable[str]) -> list[str]:
+                return sorted(
+                    {
+                        str(value)
+                        for value in values
+                        if str(value).casefold() in candidate_skill_set
+                    },
+                    key=str.casefold,
+                )
+
+            def missing(values: Iterable[str]) -> list[str]:
+                return sorted(
+                    {
+                        str(value)
+                        for value in values
+                        if str(value).casefold() not in candidate_skill_set
+                    },
+                    key=str.casefold,
+                )
+
+            raw_skills = float(raw_predictions[position, 0])
+            raw_composite = float(raw_predictions[position, 1])
+            ranking_score = float(ranking_scores[position])
+            sbert_composite = float(sbert_composite_scores[position])
+            matched_required = matched(required)
+            matched_preferred = matched(preferred)
+            matched_mentioned = matched(mentioned)
+            missing_required = missing(required)
+            missing_preferred = missing(preferred)
+            total_structured_skills = len(
+                {
+                    str(value).casefold()
+                    for value in [*required, *preferred, *mentioned]
+                }
+            )
+            total_matched_skills = len(
+                {
+                    value.casefold()
+                    for value in [
+                        *matched_required,
+                        *matched_preferred,
+                        *matched_mentioned,
+                    ]
+                }
+            )
+            matches.append(
+                {
+                    "rank": rank,
+                    "job_id": job_id,
+                    "title": self._clean_display_text(
+                        job.get("title"), "Unknown title"
+                    ),
+                    "company": self._clean_display_text(
+                        job.get("company"), "Unknown company"
+                    ),
+                    "location": self._clean_display_text(
+                        job.get("location"), "Unknown location"
+                    ),
+                    "url": job.get("url"),
+                    "description": self._clean_description(job.get("description")),
+                    "raw_skills_score": raw_skills,
+                    "raw_composite_score": raw_composite,
+                    "ranking_score": ranking_score,
+                    "ranking_policy": policy_name,
+                    "sbert_calibrated_composite_score": (
+                        sbert_composite if math.isfinite(sbert_composite) else None
+                    ),
+                    "job_feature_cosine_similarity": float(
+                        feature_cosine_similarities[position]
+                    ),
+                    # Clipping is presentation-only. Ranking and evaluation use raw scores.
+                    "display_skills_score": float(np.clip(raw_skills, 0.0, 100.0)),
+                    "display_composite_score": float(
+                        np.clip(ranking_score, 0.0, 100.0)
+                    ),
+                    "matched_required_skills": matched_required,
+                    "matched_preferred_skills": matched_preferred,
+                    "matched_mentioned_skills": matched_mentioned,
+                    "missing_required_skills": missing_required,
+                    "missing_preferred_skills": missing_preferred,
+                    "required_skill_count": len(required),
+                    "preferred_skill_count": len(preferred),
+                    "mentioned_skill_count": len(mentioned),
+                    "unique_structured_skill_count": total_structured_skills,
+                    "unique_matched_skill_count": total_matched_skills,
+                    "structured_skill_overlap_ratio": (
+                        total_matched_skills / total_structured_skills
+                        if total_structured_skills
+                        else None
+                    ),
+                    "structured_skill_evidence_available": bool(
+                        required or preferred or mentioned
+                    ),
+                }
+            )
+
+        if matches:
+            top_score = float(matches[0]["ranking_score"])
+            for match in matches:
+                match["raw_score_gap_from_top"] = (
+                    top_score - float(match["ranking_score"])
+                )
+
+        return {
+            "model": self.config.get("model_name", "Job Optimizer Semantic Graph Matcher"),
+            "ranking_policy": policy_name,
+            "candidate": {
+                "detected_skills": skills,
+                "detected_skill_count": len(skills),
+                "resume_character_count": len(cleaned),
+                "cold_start_candidate_updates_shared_skills": False,
+            },
+            "matches": matches,
+            "disclaimer": (
+                "Scores estimate profile-to-job compatibility. They are not hiring "
+                "probabilities, employment guarantees, or recruiter decisions."
+            ),
+        }

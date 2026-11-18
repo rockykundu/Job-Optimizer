@@ -1,0 +1,29 @@
+{
+  "stage": "Stage 11B production ranking policy promotion",
+  "status": "promoted_and_runtime_validated",
+  "version": "1.1.0",
+  "promoted_at_utc": "2026-09-06T07:03:13+00:00",
+  "production_policy_path": "models\\final\\ranking_policy.json",
+  "weights": {
+    "gnn": 0.78,
+    "sbert": 0.22
+  },
+  "backups": {
+    "previous_ranking_policy": null,
+    "previous_model_config": "models\\final\\backups\\model_config.20260906T070313Z.json"
+  },
+  "hashes": {
+    "candidate_policy_sha256": "ea52fb09dd2ac016c9050e62d593bc05f64445433c42f990d0c0b0bd1daad7c0",
+    "production_policy_sha256": "306fe9d1eda08e7f5ce91c2d8d09237afa90daa51e821aa59b409214fe9babeb",
+    "model_config_sha256": "eb721839bf130de6237ac1217fabb79e6a71b4d2e00d460fa4ac6630319488e5"
+  },
+  "safety": {
+    "checkpoint_modified": false,
+    "training_run": false,
+    "dataset_download_requested": false,
+    "model_download_requested": false,
+    "rollback_metadata_recorded": true
+  },
+  "runtime_validation_report": "evaluation\\ranking_policy\\production_policy_validation_report.json",
+  "runtime_validation_checkpoint_sha256": "451c94f6893f2bece4115d26099fe026b32845dfe3e2003ad5187e3166646afe"
+}

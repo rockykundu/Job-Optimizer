@@ -1,0 +1,675 @@
+{
+  "input": {
+    "job_count": 2468,
+    "candidate_skill_catalog_size": 835,
+    "registered_search_phrases": 900
+  },
+  "output": {
+    "enriched_job_count": 2468,
+    "jobs_with_at_least_one_skill": 2440,
+    "jobs_without_detected_skills": 28,
+    "unique_detected_skills": 689,
+    "required_sections_detected": 1160,
+    "preferred_sections_detected": 343,
+    "average_skills_per_job": 10.71,
+    "median_skills_per_job": 10.0,
+    "maximum_skills_in_one_job": 44
+  },
+  "top_detected_skills": [
+    {
+      "skill": "Communication",
+      "job_count": 1305,
+      "required_count": 517,
+      "preferred_count": 41,
+      "general_mention_count": 747
+    },
+    {
+      "skill": "Compliance",
+      "job_count": 611,
+      "required_count": 80,
+      "preferred_count": 11,
+      "general_mention_count": 520
+    },
+    {
+      "skill": "Artificial Intelligence",
+      "job_count": 559,
+      "required_count": 138,
+      "preferred_count": 68,
+      "general_mention_count": 353
+    },
+    {
+      "skill": "Reporting",
+      "job_count": 559,
+      "required_count": 91,
+      "preferred_count": 14,
+      "general_mention_count": 454
+    },
+    {
+      "skill": "Documentation",
+      "job_count": 487,
+      "required_count": 58,
+      "preferred_count": 6,
+      "general_mention_count": 423
+    },
+    {
+      "skill": "Collaboration",
+      "job_count": 470,
+      "required_count": 70,
+      "preferred_count": 20,
+      "general_mention_count": 380
+    },
+    {
+      "skill": "Python",
+      "job_count": 408,
+      "required_count": 167,
+      "preferred_count": 16,
+      "general_mention_count": 225
+    },
+    {
+      "skill": "Analytics",
+      "job_count": 372,
+      "required_count": 71,
+      "preferred_count": 21,
+      "general_mention_count": 280
+    },
+    {
+      "skill": "SQL",
+      "job_count": 350,
+      "required_count": 149,
+      "preferred_count": 10,
+      "general_mention_count": 191
+    },
+    {
+      "skill": "Agile",
+      "job_count": 347,
+      "required_count": 84,
+      "preferred_count": 32,
+      "general_mention_count": 231
+    },
+    {
+      "skill": "CI/CD",
+      "job_count": 336,
+      "required_count": 108,
+      "preferred_count": 39,
+      "general_mention_count": 189
+    },
+    {
+      "skill": "JavaScript",
+      "job_count": 335,
+      "required_count": 145,
+      "preferred_count": 18,
+      "general_mention_count": 172
+    },
+    {
+      "skill": "AWS",
+      "job_count": 332,
+      "required_count": 122,
+      "preferred_count": 50,
+      "general_mention_count": 160
+    },
+    {
+      "skill": "Research",
+      "job_count": 327,
+      "required_count": 53,
+      "preferred_count": 26,
+      "general_mention_count": 248
+    },
+    {
+      "skill": "Microsoft Excel",
+      "job_count": 311,
+      "required_count": 116,
+      "preferred_count": 5,
+      "general_mention_count": 190
+    },
+    {
+      "skill": "Java",
+      "job_count": 297,
+      "required_count": 124,
+      "preferred_count": 8,
+      "general_mention_count": 165
+    },
+    {
+      "skill": "React",
+      "job_count": 295,
+      "required_count": 139,
+      "preferred_count": 10,
+      "general_mention_count": 146
+    },
+    {
+      "skill": "Git",
+      "job_count": 285,
+      "required_count": 138,
+      "preferred_count": 8,
+      "general_mention_count": 139
+    },
+    {
+      "skill": "REST APIs",
+      "job_count": 278,
+      "required_count": 114,
+      "preferred_count": 3,
+      "general_mention_count": 161
+    },
+    {
+      "skill": "Compensation",
+      "job_count": 276,
+      "required_count": 59,
+      "preferred_count": 28,
+      "general_mention_count": 189
+    },
+    {
+      "skill": "Azure",
+      "job_count": 263,
+      "required_count": 86,
+      "preferred_count": 37,
+      "general_mention_count": 140
+    },
+    {
+      "skill": "Attention to Detail",
+      "job_count": 255,
+      "required_count": 110,
+      "preferred_count": 8,
+      "general_mention_count": 137
+    },
+    {
+      "skill": "Coordination",
+      "job_count": 229,
+      "required_count": 31,
+      "preferred_count": 3,
+      "general_mention_count": 195
+    },
+    {
+      "skill": "Onboarding",
+      "job_count": 228,
+      "required_count": 18,
+      "preferred_count": 20,
+      "general_mention_count": 190
+    },
+    {
+      "skill": "Docker",
+      "job_count": 216,
+      "required_count": 81,
+      "preferred_count": 37,
+      "general_mention_count": 98
+    },
+    {
+      "skill": "Stakeholder Management",
+      "job_count": 203,
+      "required_count": 56,
+      "preferred_count": 9,
+      "general_mention_count": 138
+    },
+    {
+      "skill": "Machine Learning",
+      "job_count": 194,
+      "required_count": 62,
+      "preferred_count": 20,
+      "general_mention_count": 112
+    },
+    {
+      "skill": "Kubernetes",
+      "job_count": 192,
+      "required_count": 62,
+      "preferred_count": 25,
+      "general_mention_count": 105
+    },
+    {
+      "skill": "TypeScript",
+      "job_count": 185,
+      "required_count": 68,
+      "preferred_count": 12,
+      "general_mention_count": 105
+    },
+    {
+      "skill": "CSS",
+      "job_count": 179,
+      "required_count": 77,
+      "preferred_count": 6,
+      "general_mention_count": 96
+    },
+    {
+      "skill": "GCP",
+      "job_count": 178,
+      "required_count": 52,
+      "preferred_count": 34,
+      "general_mention_count": 92
+    },
+    {
+      "skill": "Microservices",
+      "job_count": 175,
+      "required_count": 64,
+      "preferred_count": 9,
+      "general_mention_count": 102
+    },
+    {
+      "skill": "Analytical Skills",
+      "job_count": 173,
+      "required_count": 53,
+      "preferred_count": 11,
+      "general_mention_count": 109
+    },
+    {
+      "skill": "Interpersonal Skills",
+      "job_count": 171,
+      "required_count": 71,
+      "preferred_count": 8,
+      "general_mention_count": 92
+    },
+    {
+      "skill": "HTML",
+      "job_count": 165,
+      "required_count": 68,
+      "preferred_count": 8,
+      "general_mention_count": 89
+    },
+    {
+      "skill": "Project Management",
+      "job_count": 165,
+      "required_count": 46,
+      "preferred_count": 6,
+      "general_mention_count": 113
+    },
+    {
+      "skill": "Angular",
+      "job_count": 160,
+      "required_count": 54,
+      "preferred_count": 16,
+      "general_mention_count": 90
+    },
+    {
+      "skill": "Negotiation",
+      "job_count": 158,
+      "required_count": 60,
+      "preferred_count": 6,
+      "general_mention_count": 92
+    },
+    {
+      "skill": "Supply Chain",
+      "job_count": 157,
+      "required_count": 36,
+      "preferred_count": 5,
+      "general_mention_count": 116
+    },
+    {
+      "skill": "Business Development",
+      "job_count": 157,
+      "required_count": 33,
+      "preferred_count": 5,
+      "general_mention_count": 119
+    },
+    {
+      "skill": "Logistics",
+      "job_count": 156,
+      "required_count": 34,
+      "preferred_count": 4,
+      "general_mention_count": 118
+    },
+    {
+      "skill": "Sourcing",
+      "job_count": 151,
+      "required_count": 20,
+      "preferred_count": 2,
+      "general_mention_count": 129
+    },
+    {
+      "skill": "Troubleshooting",
+      "job_count": 150,
+      "required_count": 29,
+      "preferred_count": 1,
+      "general_mention_count": 120
+    },
+    {
+      "skill": "Microsoft Office",
+      "job_count": 150,
+      "required_count": 66,
+      "preferred_count": 1,
+      "general_mention_count": 83
+    },
+    {
+      "skill": "Node.js",
+      "job_count": 149,
+      "required_count": 73,
+      "preferred_count": 8,
+      "general_mention_count": 68
+    },
+    {
+      "skill": "CRM",
+      "job_count": 149,
+      "required_count": 35,
+      "preferred_count": 10,
+      "general_mention_count": 104
+    },
+    {
+      "skill": "Customer Service",
+      "job_count": 146,
+      "required_count": 25,
+      "preferred_count": 5,
+      "general_mention_count": 116
+    },
+    {
+      "skill": "PostgreSQL",
+      "job_count": 141,
+      "required_count": 71,
+      "preferred_count": 4,
+      "general_mention_count": 66
+    },
+    {
+      "skill": "Networking",
+      "job_count": 137,
+      "required_count": 22,
+      "preferred_count": 6,
+      "general_mention_count": 109
+    },
+    {
+      "skill": "Problem Solving",
+      "job_count": 136,
+      "required_count": 31,
+      "preferred_count": 7,
+      "general_mention_count": 98
+    }
+  ],
+  "role_family_coverage": [
+    {
+      "role_family": "backend",
+      "job_count": 231,
+      "jobs_with_skills": 228,
+      "jobs_without_skills": 3,
+      "coverage_percentage": 98.7,
+      "average_skills_per_job": 13.26
+    },
+    {
+      "role_family": "customer_success",
+      "job_count": 89,
+      "jobs_with_skills": 89,
+      "jobs_without_skills": 0,
+      "coverage_percentage": 100.0,
+      "average_skills_per_job": 10.51
+    },
+    {
+      "role_family": "data",
+      "job_count": 240,
+      "jobs_with_skills": 238,
+      "jobs_without_skills": 2,
+      "coverage_percentage": 99.17,
+      "average_skills_per_job": 11.23
+    },
+    {
+      "role_family": "devops",
+      "job_count": 139,
+      "jobs_with_skills": 135,
+      "jobs_without_skills": 4,
+      "coverage_percentage": 97.12,
+      "average_skills_per_job": 11.7
+    },
+    {
+      "role_family": "finance",
+      "job_count": 158,
+      "jobs_with_skills": 156,
+      "jobs_without_skills": 2,
+      "coverage_percentage": 98.73,
+      "average_skills_per_job": 9.08
+    },
+    {
+      "role_family": "frontend",
+      "job_count": 162,
+      "jobs_with_skills": 161,
+      "jobs_without_skills": 1,
+      "coverage_percentage": 99.38,
+      "average_skills_per_job": 11.54
+    },
+    {
+      "role_family": "fullstack",
+      "job_count": 309,
+      "jobs_with_skills": 307,
+      "jobs_without_skills": 2,
+      "coverage_percentage": 99.35,
+      "average_skills_per_job": 10.56
+    },
+    {
+      "role_family": "hr",
+      "job_count": 166,
+      "jobs_with_skills": 164,
+      "jobs_without_skills": 2,
+      "coverage_percentage": 98.8,
+      "average_skills_per_job": 11.58
+    },
+    {
+      "role_family": "legal",
+      "job_count": 76,
+      "jobs_with_skills": 76,
+      "jobs_without_skills": 0,
+      "coverage_percentage": 100.0,
+      "average_skills_per_job": 12.33
+    },
+    {
+      "role_family": "marketing",
+      "job_count": 181,
+      "jobs_with_skills": 179,
+      "jobs_without_skills": 2,
+      "coverage_percentage": 98.9,
+      "average_skills_per_job": 9.69
+    },
+    {
+      "role_family": "mobile",
+      "job_count": 74,
+      "jobs_with_skills": 73,
+      "jobs_without_skills": 1,
+      "coverage_percentage": 98.65,
+      "average_skills_per_job": 9.08
+    },
+    {
+      "role_family": "non-tech",
+      "job_count": 128,
+      "jobs_with_skills": 128,
+      "jobs_without_skills": 0,
+      "coverage_percentage": 100.0,
+      "average_skills_per_job": 10.25
+    },
+    {
+      "role_family": "operations",
+      "job_count": 194,
+      "jobs_with_skills": 193,
+      "jobs_without_skills": 1,
+      "coverage_percentage": 99.48,
+      "average_skills_per_job": 11.07
+    },
+    {
+      "role_family": "product",
+      "job_count": 186,
+      "jobs_with_skills": 182,
+      "jobs_without_skills": 4,
+      "coverage_percentage": 97.85,
+      "average_skills_per_job": 9.32
+    },
+    {
+      "role_family": "sales",
+      "job_count": 135,
+      "jobs_with_skills": 131,
+      "jobs_without_skills": 4,
+      "coverage_percentage": 97.04,
+      "average_skills_per_job": 7.9
+    }
+  ],
+  "quality_review": {
+    "dictionary_conflict_count": 0,
+    "dictionary_conflicts": {},
+    "jobs_without_skills_sample": [
+      {
+        "id": "linkedin_4407538348",
+        "title": "DevOps Engineer",
+        "role_family": "devops",
+        "description_length": 134
+      },
+      {
+        "id": "linkedin_4407331500",
+        "title": "Cloud Engineer",
+        "role_family": "devops",
+        "description_length": 1053
+      },
+      {
+        "id": "linkedin_4373581271",
+        "title": "Frontend Developer – Power Apps",
+        "role_family": "frontend",
+        "description_length": 660
+      },
+      {
+        "id": "linkedin_4397740879",
+        "title": "Full Stack Developer",
+        "role_family": "fullstack",
+        "description_length": 151
+      },
+      {
+        "id": "linkedin_4409143770",
+        "title": "Senior Backend Engineer",
+        "role_family": "backend",
+        "description_length": 987
+      },
+      {
+        "id": "linkedin_4305234008",
+        "title": "Computerized System Validation (CSV)",
+        "role_family": "data",
+        "description_length": 1045
+      },
+      {
+        "id": "linkedin_4409073143",
+        "title": "Area Sales Manager\n1 day ago",
+        "role_family": "sales",
+        "description_length": 199
+      },
+      {
+        "id": "linkedin_4367197512",
+        "title": "Manager - PL - Prime - T1",
+        "role_family": "finance",
+        "description_length": 365
+      },
+      {
+        "id": "linkedin_4400231829",
+        "title": "Senior Revenue Analyst",
+        "role_family": "data",
+        "description_length": 2759
+      },
+      {
+        "id": "linkedin_4386158395",
+        "title": "IMU-CAL-Sr.Manager",
+        "role_family": "sales",
+        "description_length": 2021
+      },
+      {
+        "id": "linkedin_4337150085",
+        "title": "Commercieel adviseur koelinstallaties",
+        "role_family": "sales",
+        "description_length": 2990
+      },
+      {
+        "id": "linkedin_4364301243",
+        "title": "Manager - GRC Packaged Product (Archer, SN, OT, MS, OP)",
+        "role_family": "product",
+        "description_length": 1466
+      },
+      {
+        "id": "linkedin_4380674949",
+        "title": "Medical Representative (Diversity Only)",
+        "role_family": "product",
+        "description_length": 890
+      },
+      {
+        "id": "linkedin_4377682353",
+        "title": "Territory Manager (Medical Representative)",
+        "role_family": "product",
+        "description_length": 886
+      },
+      {
+        "id": "linkedin_4408065442",
+        "title": "Recruiter Internship in Noida",
+        "role_family": "hr",
+        "description_length": 566
+      },
+      {
+        "id": "linkedin_4405835578",
+        "title": "Software Test Engineer",
+        "role_family": "fullstack",
+        "description_length": 588
+      },
+      {
+        "id": "linkedin_4397946338",
+        "title": "Adobe Campaign Developer",
+        "role_family": "marketing",
+        "description_length": 385
+      },
+      {
+        "id": "linkedin_4405024859",
+        "title": "Android Developer",
+        "role_family": "mobile",
+        "description_length": 127
+      },
+      {
+        "id": "linkedin_4320559278",
+        "title": "240634-Senior Executive",
+        "role_family": "finance",
+        "description_length": 458
+      },
+      {
+        "id": "linkedin_4407802473",
+        "title": "Back-end Developer",
+        "role_family": "backend",
+        "description_length": 715
+      },
+      {
+        "id": "linkedin_4376178460",
+        "title": "Assistant Manager - API",
+        "role_family": "product",
+        "description_length": 801
+      },
+      {
+        "id": "linkedin_4407327896",
+        "title": "Cloud Engineer",
+        "role_family": "devops",
+        "description_length": 1053
+      },
+      {
+        "id": "linkedin_4402910122",
+        "title": "Software Engineer",
+        "role_family": "devops",
+        "description_length": 363
+      },
+      {
+        "id": "linkedin_4395947827",
+        "title": "HR Recruiter (Freshers Welcome)",
+        "role_family": "hr",
+        "description_length": 420
+      },
+      {
+        "id": "linkedin_4398396158",
+        "title": "Assistant Key Account Manager",
+        "role_family": "sales",
+        "description_length": 1595
+      },
+      {
+        "id": "linkedin_4385838524",
+        "title": "Assistant Manager - Outlet",
+        "role_family": "marketing",
+        "description_length": 876
+      },
+      {
+        "id": "linkedin_4343780493",
+        "title": "Deputy Manager - Operations &amp; Maintenance",
+        "role_family": "operations",
+        "description_length": 973
+      },
+      {
+        "id": "linkedin_4405023912",
+        "title": "Full - Stack Developer",
+        "role_family": "backend",
+        "description_length": 127
+      }
+    ]
+  },
+  "safety_rules": {
+    "generated_matches_used": false,
+    "generated_gaps_used": false,
+    "generated_scores_used": false,
+    "job_descriptions_used": true,
+    "candidate_skill_catalog_used": true,
+    "ambiguous_short_skills_context_checked": true,
+    "original_job_records_preserved": true
+  }
+}

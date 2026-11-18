@@ -1,0 +1,122 @@
+ROLE RADAR DATASET — INTEGRITY AND JOIN AUDIT
+================================================================================
+
+1. PRIMARY COUNTS
+Jobs: 2,500
+Profiles: 640
+Phase 3 pairs: 5,000
+Phase 3 labels: 22,465
+Gold labels: 108
+
+2. DUPLICATE IDENTIFIERS
+Duplicate job IDs: 29
+Duplicate profile IDs: 0
+Duplicate pair IDs: 0
+Duplicate label pair IDs: 0
+Duplicate gold pair IDs: 0
+
+3. PHASE 3 PAIR FOREIGN KEYS
+Pairs with unknown profile IDs: 0
+Pairs with unknown job IDs: 0
+
+4. LABEL IDENTIFIER RECONSTRUCTION
+Labels with invalid pair_id format: 0
+Labels referencing unknown profiles: 798
+Labels referencing unknown jobs: 0
+
+5. PAIR/LABEL COVERAGE
+Phase 3 pairs also present in labels: 4,975
+Phase 3 pairs missing labels: 25
+Labels not present in phase3_pairs.json: 17,490
+Gold labels also present in generated labels: 45
+
+6. GOLD-LABEL IDENTIFIERS
+Gold labels with invalid pair_id format: 0
+Gold labels referencing unknown profiles: 0
+Gold labels referencing unknown jobs: 2
+
+7. GENERATED LABEL DISTRIBUTIONS
+skills: count=22,465, minimum=50.00, maximum=100.00, mean=63.01, median=55.00, unique_values=32
+seniority: count=22,465, minimum=62.00, maximum=95.00, mean=86.55, median=88.00, unique_values=7
+domain: count=22,465, minimum=58.00, maximum=90.00, mean=72.45, median=72.00, unique_values=4
+location: count=22,465, minimum=60.00, maximum=97.00, mean=71.78, median=68.00, unique_values=4
+composite: count=22,465, minimum=56.00, maximum=98.00, mean=69.58, median=67.00, unique_values=42
+
+8. GOLD LABEL DISTRIBUTIONS
+skills: count=108, minimum=50.00, maximum=98.00, mean=74.66, median=75.00, unique_values=23
+seniority: count=108, minimum=62.00, maximum=95.00, mean=87.36, median=88.00, unique_values=7
+domain: count=108, minimum=62.00, maximum=90.00, mean=73.00, median=72.00, unique_values=3
+location: count=108, minimum=60.00, maximum=97.00, mean=73.57, median=68.00, unique_values=3
+composite: count=108, minimum=58.00, maximum=96.00, mean=76.08, median=76.00, unique_values=36
+
+9. GENERATED LABEL SOURCES
+  - gemini-2.5-flash-lite+static: 22,465
+
+10. GENERATED LABEL CONFIDENCE
+  - high: 22,465
+
+11. PAIR TYPES
+  - hard_negative: 2,000
+  - positive: 1,500
+  - negative: 1,500
+
+12. JOB ROLE FAMILIES
+  - fullstack: 312
+  - data: 244
+  - backend: 235
+  - operations: 196
+  - product: 189
+  - marketing: 181
+  - hr: 169
+  - frontend: 164
+  - finance: 160
+  - devops: 145
+  - sales: 136
+  - non-tech: 128
+  - customer_success: 89
+  - legal: 78
+  - mobile: 74
+
+13. JOB SENIORITY LEVELS
+  - Not Applicable: 969
+  - Mid-Senior level: 562
+  - Associate: 458
+  - Director: 224
+  - Entry level: 176
+  - Internship: 100
+  - Executive: 11
+
+14. PROFILE SENIORITY LEVELS
+  - Mid: 269
+  - Senior: 170
+  - Junior: 107
+  - Staff: 94
+
+15. PROFILE SKILLS
+Primary skill occurrences: 3,052
+Secondary skill occurrences: 1,457
+Unique case-insensitive skills: 844
+
+16. JOB DESCRIPTIONS
+Empty job descriptions: 0
+Description character lengths: count=2,500, minimum=1.00, maximum=18886.00, mean=3286.86, median=2813.00, unique_values=1,944
+
+17. GOLD-LABEL SCHEMA PATTERNS
+Distinct gold-label structures: 2
+  - Records: 60
+    Fields: ['composite', 'domain', 'gaps', 'job_family', 'location', 'matches', 'overqualified', 'pair_id', 'review_status', 'seniority', 'skills', 'strategy']
+  - Records: 48
+    Fields: ['composite', 'domain', 'location', 'overqualified', 'pair_id', 'reasoning', 'seniority', 'skills']
+
+18. GENERATED VERSUS GOLD SCORE COMPARISON
+Comparable overlapping pairs: 45
+skills: exact=11/45, mean_absolute_difference=8.69, maximum_difference=33.00
+seniority: exact=45/45, mean_absolute_difference=0.00, maximum_difference=0.00
+domain: exact=45/45, mean_absolute_difference=0.00, maximum_difference=0.00
+location: exact=45/45, mean_absolute_difference=0.00, maximum_difference=0.00
+composite: exact=12/45, mean_absolute_difference=4.44, maximum_difference=17.00
+
+19. BENCHMARK DATASET
+Benchmark profile available: True
+Benchmark jobs: 25
+Benchmark baseline records: 25
